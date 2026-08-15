@@ -1,0 +1,24 @@
+services:
+  web:
+    image: ghcr.io/${GITHUB_REPOSITORY:-jaweed3/suara}/suara:latest
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - relay
+
+  relay:
+    # ponytail: Relay publik + relay self-hosted buat distribusi. 
+    # Frontend di-build dengan relay.suara.app + relay publik sebagai fallback.
+    image: scsibug/nostr-rs-relay:latest
+    container_name: suara-relay
+    restart: unless-stopped
+    ports:
+      - "7777:8080"
+    volumes:
+      - relay-data:/usr/src/db
+    environment:
+      - RUST_LOG=info
+
+volumes:
+  relay-data:
