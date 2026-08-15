@@ -81,7 +81,7 @@ jobs:
 
       - name: Deploy
         run: |
-          cd suara
+          cd $HOME/suara
           echo "Deploying ${{ github.repository }}..."
           export GITHUB_REPOSITORY=${{ github.repository }}
           docker compose pull
