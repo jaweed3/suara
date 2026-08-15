@@ -67,6 +67,10 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64
           push: true
+          no-cache: true
+          build-args: |
+            VITE_APP_NAME=yapping
+            VITE_APP_DESCRIPTION=Yapping - curhat anonim, anti-somasi. Platform percakapan bebas sensor berbasis Nostr.
           tags: |
             ghcr.io/${{ github.repository }}/suara:latest
             ghcr.io/${{ github.repository }}/suara:${{ github.sha }}
