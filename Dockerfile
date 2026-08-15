@@ -3,8 +3,12 @@ FROM node:22-slim AS builder
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++ libc6-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile --ignore-scripts
+RUN corepack enable && pnpm install --frozen-lockfile --no-optional=false
 
 COPY . .
 # Include .env dari build arg (defaults, relay config public)
