@@ -14,7 +14,7 @@ export interface DisposableAccount {
   pubkey: string
   seckey: string
   createdAt: number
- 用途: "curhat" | "report" | "general"
+  purpose: "curhat" | "report" | "general"
 }
 
 /**
@@ -26,14 +26,14 @@ export interface DisposableAccount {
  * - User should use Tor/VPN when creating and using
  */
 export function generateDisposableAccount(
-  purpose: DisposableAccount["用途"] = "curhat"
+  purpose: DisposableAccount["purpose"] = "curhat"
 ): DisposableAccount {
   const seckey = generateSecretKey()
   const pubkey = getPublicKey(seckey)
 
   return {
     pubkey,
-    seckey: seckey as string,
+    seckey: Array.from(seckey).map(b => b.toString(16).padStart(2, "0")).join(""),
     createdAt: Math.floor(Date.now() / 1000),
     purpose,
   }

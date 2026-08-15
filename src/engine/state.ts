@@ -321,13 +321,6 @@ export const getMinWot = () => getSetting("min_wot_score") / getMaxWot()
 /**
  * Enhanced trust score combining Welshman's basic WoT with Suara's trust layer.
  * 
- * Enhancement factors not yet fully operational (require community/vouch data):
- * - Age-weighted vouches (needs follower list data + timestamps)
- * - Cluster diversity (requires graph analysis)
- * - Slashing (requires report history)
- * 
- * These are enabled once community features are live.
- * 
  * ponytail: This is a bridge — simple but works now. Full trust layer activates
  * when communities gain enough participants to populate the vouch/cluster data.
  */
@@ -339,14 +332,8 @@ export function calculateTrustScore(pubkey: string): number {
   // Normalize to 0-100 scale
   const normalizedBase = Math.min(100, (baseWot / Math.max(maxWot, 1)) * 100)
   
-  // Check if this pubkey is muted (major penalty)
-  const $userMutedPubkeys = userMutedPubkeys.get()
-  const mutedPenalty = $userMutedPubkeys.has(pubkey) ? 50 : 0
-  
-  // Calculate final score with muted penalty
-  const clamped = Math.max(0, normalizedBase - mutedPenalty)
-  
-  return clampTrust(clamped)
+  // Clamp to 0-100
+  return Math.max(0, Math.min(100, normalizedBase))
 }
 
 /** Derived store for trust label display */
@@ -457,8 +444,6 @@ export const isEventMuted = withGetter(
           const okPow = isValidPow && powDifficulty > minPow
 
           return !okTrusted && !okPow
-
-          return !okWot && !okPow
         },
       })
     },
