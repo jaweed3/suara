@@ -70,3 +70,23 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/suara:latest
             ghcr.io/${{ github.repository }}/suara:${{ github.sha }}
+
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd suara
+            echo "Deploying ${{ github.repository }}..."
+            export GITHUB_REPOSITORY=${{ github.repository }}
+            docker compose pull
+            docker compose up -d
+            echo "Deploy complete."
