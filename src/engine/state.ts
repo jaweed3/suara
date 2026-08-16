@@ -569,7 +569,7 @@ export const defaultFeed = derived([userFollows, userFeeds], ([$userFollows, $us
   const baseDefinition =
     $userFollows?.size > 0
       ? makeScopeFeed(Scope.Follows)
-      : makeTagFeed("#curhat", "curhat")
+      : makeTagFeed("#t", "curhat")
 
   const definition = normalizeFeedDefinition(
     makeIntersectionFeed(baseDefinition, makeKindFeed(...noteKinds)),

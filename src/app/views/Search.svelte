@@ -104,7 +104,7 @@
         {/each}
       </div>
       <h2 class="mb-3 font-headline text-lg font-bold text-[#eedfde]">Curhatan terbaru</h2>
-      <Feed feed={makeFeed({definition: makeTagFeed("#curhat", "curhat")})} />
+      <Feed feed={makeFeed({definition: makeTagFeed("#t", "curhat")})} />
     {:else}
       <SearchResults replace term={searchTerm}>
         <div slot="result" let:result>
