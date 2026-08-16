@@ -13,19 +13,19 @@
 {#if topics.includes(topic)}
   <Heading>{toTitle(topic)}</Heading>
   {#if topic === "web-of-trust"}
+    <p class="text-lg font-semibold">Di sini kamu bebas curhat. 🙌</p>
     <p>
-      WoT (Web Of Trust) is one of the best ways to determine how trustworthy someone might be,
-      based on your social graph.
+      Mau cerita soal kerjaan yang bikin pusing? Soal ekonomi yang makin berat? Pengalaman toxic
+      yang selama ini kamu pendam? Semua bisa dibahas di sini.
     </p>
     <p>
-      In {appName}, this number is equal to how many people you follow that also follow a given
-      person, minus how many people you follow who have muted this person. This allows you to see at
-      a glance if someone is accepted in your network. This helps reduce spam, impostors, and
-      objectionable content.
+      Gak perlu takut dihakimi atau diem-diem disensor. {appName} dibangun supaya suaramu tetap
+      aman dan didengar — tanpa khawatir identitasmu bocor atau pembalasan dari pihak yang gak
+      nyaman dengan curhatanmu.
     </p>
     <p>
-      You can set a minimum web of trust score on your content settings page, which will
-      automatically mute anyone with a lower score than your threshold.
+      Makin banyak orang tepercaya di jaringanmu, makin nyaman pula diskusinya. Kami bikin sistem
+      ini otomatis — kamu tinggal yapping, sisanya kami yang jagain.
     </p>
   {:else if topic === "remote-signers"}
     <p>

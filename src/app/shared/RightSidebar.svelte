@@ -46,7 +46,10 @@
       Web of Trust
       <span class="material-symbols-outlined text-[18px] text-accent">policy</span>
     </h2>
-    <p class="text-sm text-[#8e6e6e]">Orang tepercaya di jaringan kamu tampil di sini.</p>
+    <p class="text-sm leading-relaxed text-[#e7bcbb]">
+      Mau curhat apa? Kerjaan? Ekonomi? Toxic experience? Gaspol aja — di sini suaramu aman,
+      dan orang-orang tepercaya di jaringanmu yang bakal dengerin.
+    </p>
   </div>
 
   <footer class="mt-auto flex flex-wrap gap-x-3 gap-y-1 py-4">
