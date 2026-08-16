@@ -96,9 +96,9 @@
         {/if}
       </div>
       {#if $signer}
-        <Button class="yap-btn rounded px-6 py-2 font-bold" on:click={createNote}>Yapping +</Button>
+        <Button class="yap-btn px-6 py-2 font-bold" on:click={createNote}>Yapping +</Button>
       {:else if !$pubkey}
-        <Link modal class="btn yap-btn rounded px-6 py-2 font-bold" href="/login">Masuk</Link>
+        <Link modal class="btn yap-btn px-6 py-2 font-bold" href="/login">Masuk</Link>
       {/if}
     </div>
   </div>

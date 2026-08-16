@@ -16,6 +16,7 @@ export type CommunityType =
   | "roast_government"
   | "sandwich_generation"
   | "tech_career"
+  | "toxic_relationship"
   | "general"
 
 export interface Community {
@@ -32,6 +33,17 @@ export interface Community {
 // === Pre-defined Communities ===
 
 export const DEFAULT_COMMUNITIES: Community[] = [
+  {
+    id: "budak-korporat",
+    name: "Budak Korporat",
+    description:
+      "Lembur gak dihargai, gaji pas-pasan, atasan gak waras. Cerita sebalmu biar gak dipendem sendiri.",
+    type: "toxic_company",
+    strictness: FORUM_STRICTNESS.strict,
+    relayHints: ["wss://relay.yapping.my.id"],
+    moderators: [],
+    createdAt: 1700000000,
+  },
   {
     id: "toxic-company",
     name: "Toxic Company",
@@ -58,6 +70,17 @@ export const DEFAULT_COMMUNITIES: Community[] = [
     description:
       "Nanggung ortu + anak + diri sendiri? Di sini kita saling ngerti. Cerita apa aja, dengerin apa aja. Gak perlu takut dihakimi.",
     type: "sandwich_generation",
+    strictness: FORUM_STRICTNESS.casual,
+    relayHints: ["wss://relay.yapping.my.id"],
+    moderators: [],
+    createdAt: 1700000000,
+  },
+  {
+    id: "toxic-relationship",
+    name: "Toxic Relationship",
+    description:
+      "Manipulasi, ghosting, cemburu gak wajar. Bahas relasi yang bikin mental drop — dan cara keluar.",
+    type: "toxic_relationship",
     strictness: FORUM_STRICTNESS.casual,
     relayHints: ["wss://relay.yapping.my.id"],
     moderators: [],

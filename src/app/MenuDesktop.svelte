@@ -97,7 +97,7 @@
 
   <div class="mt-auto pt-4">
     <Button
-      class="yap-btn flex w-full items-center justify-center gap-2 rounded py-3 font-bold"
+      class="yap-btn flex w-full items-center justify-center gap-2 py-3 font-bold"
       on:click={createNote}>
       <MaterialIcon name="campaign" className="text-[18px]" />
       <span>Yap</span>
@@ -117,7 +117,7 @@
         </Button>
       </div>
     {:else}
-      <Link modal class="yap-btn mt-4 flex items-center justify-center rounded py-3" href="/login">
+      <Link modal class="yap-btn mt-4 flex items-center justify-center py-3" href="/login">
         Masuk
       </Link>
     {/if}

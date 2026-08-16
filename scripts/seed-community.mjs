@@ -9,35 +9,58 @@ const PUBKEY = "e42ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9"
 const CONTENT_HASHTAG = "#sandwichgeneration"
 
 const seeds = [
+  // Sandwich Generation
   {
     pubkey:
       "e42ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
     content:
       "Tiap gajian, gue bagi tiga: ortu, anak, dan sisanya buat gue yang kepinginnya nggak ada. Kadang pengen nangis sesekali tapi di kamar mandi biar rapi.",
+    tag: "sandwich-generation",
   },
   {
     pubkey:
       "a12ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
     content:
       "Dulu gue pikir hidup sandwich itu cuma lewat. Ternyata nggak: ortu makin tua, anak makin butuh, dan gue di tengah-tengah sambil nyoba nggak patah.",
+    tag: "sandwich-generation",
   },
+  // Budak Korporat
   {
     pubkey:
       "b23ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
     content:
-      "Rasanya gue jadi ATM berjalan: semua orang minta, jarang yang nanya 'kamu gimana?'. Halo yang lain di posisi yang sama, gue ngerti. Sumpah ngerti.",
+      "Sore di-zoom gak dihitung lembur, tapi pulang tepat waktu dihitung gak loyal. Budak korporat itu kenyataan, bukan candaan.",
+    tag: "budak-korporat",
   },
   {
     pubkey:
       "c34ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
     content:
-      "Tips yang jarang dibahas: minta bantuan bukan tanda lemah. Gue mulai bilang 'maaf Kak, bulan ini lagi sempit', dan rasa bersalahnya pelan-pelan hilang.",
+      "Atasan bilang 'kita keluarga', padahal pas gue sakit malah ditanya 'kerjanya kapan selesai?'. Gaslighting tingkat dewa.",
+    tag: "budak-korporat",
   },
+  // Toxic Relationship
   {
     pubkey:
       "d45ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
     content:
-      "Buat yang lagi ngerasa sendirian di generasi ini: kita lebih banyak dari yang lu kira. Titip cerita di sini aja, gak apa-apa, gak dihakimi.",
+      "Cinta gak harus cemburu-cemburuan terus. Kalau tiap week lu harus buktiin 'gak ada yang lain', itu bukan sayang, itu kontrol.",
+    tag: "toxic-relationship",
+  },
+  {
+    pubkey:
+      "f56ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
+    content:
+      "Ghosting 3 hari, balik manis kayak nggak ada apa-apa, trus moodswing. Capek — dan itu bukan standar yang sehat.",
+    tag: "toxic-relationship",
+  },
+  // Roast Pemerintah
+  {
+    pubkey:
+      "9a6ef7b55f5c3e2e1a92a87ffc7d0d5e0c9b1a9d5f4e3f8d7c6b5a4f3e2d1c9",
+    content:
+      "Mau kritik kebijakan kok malah balik ke UU ITE. Sehat-sehat aja demokrasi kalau beda pendapat dianggap fitnah.",
+    tag: "roast-pemerintah",
   },
 ]
 
@@ -52,7 +75,7 @@ for (const seed of seeds) {
     {
       kind: 1,
       created_at: Math.floor(Date.now() / 1000) - Math.floor(Math.random() * 86400 * 3),
-      tags: [["t", "sandwich-generation"], ["t", "curhat"]],
+      tags: [["t", seed.tag], ["t", "curhat"]],
       content: seed.content,
     },
     seckey,

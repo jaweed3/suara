@@ -48,4 +48,4 @@
   {/each}
 </div>
 <p>Gak perlu ngerti teknis. Gak perlu takut. Tinggal mulut dibuka, cerita mengalir.</p>
-<Button class="yap-btn rounded px-6 py-3 font-bold" on:click={next}>Mulai</Button>
+<Button class="yap-btn px-6 py-3 font-bold" on:click={next}>Mulai</Button>

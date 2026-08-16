@@ -13,19 +13,15 @@
 {#if topics.includes(topic)}
   <Heading>{toTitle(topic)}</Heading>
   {#if topic === "web-of-trust"}
-    <p class="text-lg font-semibold">Di sini kamu bebas curhat. 🙌</p>
+    <p class="text-lg font-semibold">Di sini kamu bebas curhat.</p>
     <p>
-      Mau cerita soal kerjaan yang bikin pusing? Soal ekonomi yang makin berat? Pengalaman toxic
-      yang selama ini kamu pendam? Semua bisa dibahas di sini.
+      Yapping pakai <strong>Web of Trust</strong> — sistem keamanan yang jalan diam-diam di
+      belakang. Singkatnya: postingan dari akun yang dikenal dan dipercaya di jaringanmu lebih
+      menonjol, sementara spam dan buzzer otomatis diredupkan.
     </p>
     <p>
-      Gak perlu takut dihakimi atau diem-diem disensor. {appName} dibangun supaya suaramu tetap
-      aman dan didengar — tanpa khawatir identitasmu bocor atau pembalasan dari pihak yang gak
-      nyaman dengan curhatanmu.
-    </p>
-    <p>
-      Makin banyak orang tepercaya di jaringanmu, makin nyaman pula diskusinya. Kami bikin sistem
-      ini otomatis — kamu tinggal yapping, sisanya kami yang jagain.
+      Kamu gak perlu ngerti teknisnya. Yang penting: suaramu aman, curhatmu didengar, dan yang
+      ganggu—di-redam. Cerita apa yang mau kamu bagi?
     </p>
   {:else if topic === "remote-signers"}
     <p>

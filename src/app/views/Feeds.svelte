@@ -58,7 +58,7 @@
             <button class="rounded-full p-2 hover:bg-[#302828]"><MaterialIcon name="image" /></button>
             <button class="rounded-full p-2 hover:bg-[#302828]"><MaterialIcon name="sentiment_satisfied" /></button>
           </div>
-          <Button class="yap-btn rounded px-6 py-2 font-bold" on:click={createNote}>Yap</Button>
+          <Button class="yap-btn px-6 py-2 font-bold" on:click={createNote}>Yap</Button>
         </div>
       </div>
     </div>
@@ -74,6 +74,6 @@
   {/if}
 </div>
 
-<div class="xl:-ml-40 xl:mr-40">
+<div>
   <Feed feed={initialFeed} />
 </div>

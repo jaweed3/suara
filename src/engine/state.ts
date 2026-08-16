@@ -27,7 +27,7 @@ import {
   getFollows,
 } from "@welshman/app"
 import {
-  makeAuthorFeed,
+  makeTagFeed,
   makeScopeFeed,
   makeIntersectionFeed,
   makeKindFeed,
@@ -564,8 +564,12 @@ export const userFeeds = derived([feeds, pubkey], ([$feeds, $pubkey]: [Published
 )
 
 export const defaultFeed = derived([userFollows, userFeeds], ([$userFollows, $userFeeds]) => {
+  // ponytail: ketika belum follow siapa pun, tampilkan konten curhat (#curhat)
+  // supaya feed gak kosong dan user liat contoh yapping.
   const baseDefinition =
-    $userFollows?.size > 0 ? makeScopeFeed(Scope.Follows) : makeAuthorFeed(...env.DEFAULT_FOLLOWS)
+    $userFollows?.size > 0
+      ? makeScopeFeed(Scope.Follows)
+      : makeTagFeed("#curhat", "curhat")
 
   const definition = normalizeFeedDefinition(
     makeIntersectionFeed(baseDefinition, makeKindFeed(...noteKinds)),
