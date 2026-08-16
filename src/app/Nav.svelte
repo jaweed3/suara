@@ -50,17 +50,17 @@
 <!-- top nav -->
 {#if innerWidth >= 1024}
   <div class="top-sai left-sai right-sai fixed z-nav">
-    <div class="flex h-16 items-center justify-end gap-8 bg-neutral-900 pl-4 pr-8">
+    <div class="flex h-16 items-center justify-end gap-8 bg-[#191212] pl-64 pr-8">
       <div class="relative">
         <div class="flex">
           <Input
             dark
-            class="border-tinted-700 !bg-neutral-800 py-px outline-none"
+            class="border-solid border-[#2d0a0a] bg-[#050202] py-px outline-none"
             on:blur={onSearchBlur}
             on:keydown={onSearchKeydown}
             bind:element={searchInput}
             bind:value={$searchTerm} />
-          <Button class="btn z-feature -ml-2 border-none !bg-tinted-700 !text-tinted-200"
+          <Button class="btn z-feature -ml-2 border-none !bg-accent !text-white"
             >Cari</Button>
         </div>
         {#if $searchTerm}
@@ -68,12 +68,12 @@
             on:mousedown|preventDefault
             out:fly|local={{y: 20, duration: 200}}
             class="absolute right-0 top-10 w-96 rounded opacity-100 shadow-2xl transition-colors">
-            <div class="max-h-[70vh] overflow-auto rounded bg-tinted-700">
+            <div class="max-h-[70vh] overflow-auto rounded bg-[#211a1a]">
               <SearchResults bind:searching term={searchTerm}>
                 <div
                   slot="result"
                   let:result
-                  class="cursor-pointer px-4 py-2 transition-colors hover:bg-neutral-800">
+                  class="cursor-pointer px-4 py-2 transition-colors hover:bg-[#302828]">
                   {#if result.type === "topic"}
                     #{result.topic.name}
                   {:else if result.type === "profile"}
@@ -85,7 +85,7 @@
             {#if searching}
               <div
                 transition:slide|local={{duration: 200, delay: 100}}
-                class="flex justify-center gap-2 bg-neutral-900 px-4 py-2 text-neutral-200">
+                class="flex justify-center gap-2 bg-[#191212] px-4 py-2 text-[#8e6e6e]">
                 <div>
                   <i class="fa fa-circle-notch fa-spin" />
                 </div>
@@ -96,9 +96,9 @@
         {/if}
       </div>
       {#if $signer}
-        <Button class="btn btn-accent" on:click={createNote}>Yapping +</Button>
+        <Button class="yap-btn rounded px-6 py-2 font-bold" on:click={createNote}>Yapping +</Button>
       {:else if !$pubkey}
-        <Link modal class="btn btn-accent" href="/login">Masuk</Link>
+        <Link modal class="btn yap-btn rounded px-6 py-2 font-bold" href="/login">Masuk</Link>
       {/if}
     </div>
   </div>
@@ -107,42 +107,31 @@
 <!-- bottom nav -->
 {#if innerWidth < 1024}
   <div
-    class="px-sai pb-sai fixed bottom-0 left-0 right-0 z-nav border-neutral-600 bg-tinted-800 dark:bg-black">
-    <div class="flex items-center justify-between rounded-t-xl px-4 py-2">
+    class="px-sai pb-sai fixed bottom-0 left-0 right-0 z-nav border-t border-solid border-[#2d0a0a] bg-[#0a0505]/90 backdrop-blur-xl">
+    <div class="flex items-center justify-between px-4 py-2">
       <div class="w-1/3">
         <div
-          class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-solid border-neutral-600 text-accent dark:border-tinted-600 dark:bg-tinted-800"
+          class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-accent"
           on:click={openSearch}>
           <i class="fa fa-search -mb-1 -mr-1 text-xl" />
         </div>
       </div>
       <div>
         {#if $signer}
-          <Button class="btn btn-accent" on:click={createNote}>Yapping +</Button>
+          <Button class="yap-btn rounded-full px-6 py-2 font-bold" on:click={createNote}>Yap</Button>
         {:else if !$pubkey}
-          <Link modal class="btn btn-accent" href="/login">Masuk</Link>
+          <Link modal class="btn yap-btn rounded-full px-6 py-2 font-bold" href="/login">Masuk</Link>
         {/if}
       </div>
       <div class="relative flex w-1/3 justify-end">
         <div class="flex cursor-pointer items-center" on:click={openMenu}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            fill="currentColor"
-            class="pt-1 text-neutral-600 dark:text-tinted-600"
-            width="36"
-            height="36">
-            <path
-              fill="currentColor"
-              d="M0 88C0 74.7 10.7 64 24 64H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H24C10.7 112 0 101.3 0 88zM0 248c0-13.3 10.7-24 24-24H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24zM448 408c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H424c13.3 0 24 10.7 24 24z" />
-          </svg>
           {#if $signer}
-            <PersonCircle
-              class="-ml-4 h-11 w-11 border-4 border-white dark:border-black"
-              pubkey={$pubkey} />
+            <PersonCircle class="h-10 w-10" pubkey={$pubkey} />
             {#if $hasNewNotifications || $hasNewMessages}
               <div class="absolute right-1 top-1 h-2 w-2 rounded bg-accent" />
             {/if}
+          {:else}
+            <span class="material-symbols-outlined text-[28px] text-[#8e6e6e]">menu</span>
           {/if}
         </div>
       </div>

@@ -11,13 +11,13 @@
     thunks,
     thunkIsComplete,
   } from "@welshman/app"
-  import {toggleTheme, theme} from "src/partials/state"
   import MenuItem from "src/partials/MenuItem.svelte"
   import FlexColumn from "src/partials/FlexColumn.svelte"
   import Link from "src/partials/Link.svelte"
   import Button from "src/partials/Button.svelte"
   import PersonCircle from "src/app/shared/PersonCircle.svelte"
   import PersonHandle from "src/app/shared/PersonHandle.svelte"
+  import MaterialIcon from "src/partials/MaterialIcon.svelte"
   import MenuDesktopItem from "src/app/MenuDesktopItem.svelte"
   import MenuDesktopSecondary from "src/app/MenuDesktopSecondary.svelte"
   import {slowConnections} from "src/app/state"
@@ -26,18 +26,7 @@
 
   const {page} = router
 
-  const closeSubMenu = () => {
-    subMenu = null
-  }
-
-  const setSubMenu = name => {
-    setTimeout(
-      () => {
-        subMenu = name
-      },
-      subMenu ? 100 : 0,
-    )
-  }
+  const createNote = () => router.at("notes/create").open()
 
   let subMenu
 
@@ -70,175 +59,88 @@
   })
 
   $: isFeedPage = Boolean($page?.path.match(/^\/(notes)?$/))
-  $: isListPage = Boolean($page?.path.match(/^\/(lists)?$/))
+  $: isTrustPage = Boolean($page?.path.includes("web-of-trust"))
   $: userDisplay = deriveProfileDisplay($pubkey)
 </script>
 
-<div class="bottom-sai left-sai top-sai fixed z-sidebar w-72 bg-tinted-700 transition-colors">
-  <Link
-    external
-    class="mb-4 mt-4 flex items-center gap-2 px-6"
-    href="https://yapping.my.id">
-    <img
-      alt="yapping"
-      src={$theme === "dark"
-        ? import.meta.env.VITE_APP_WORDMARK_DARK
-        : import.meta.env.VITE_APP_WORDMARK_LIGHT} />
-  </Link>
-  <MenuDesktopItem path="/notes" isActive={isFeedPage || isListPage}>Feed</MenuDesktopItem>
-  <MenuDesktopItem
-    path="/settings/relays"
-    disabled={!$signer}
-    isActive={$page?.path.startsWith("/settings/relays")}>
-    <div class="relative inline-block">
-      Relay
-      {#if $slowConnections.length > 0}
-        <div class="absolute -right-2.5 top-1 h-1.5 w-1.5 rounded bg-accent" />
-      {/if}
-    </div>
-  </MenuDesktopItem>
-  <MenuDesktopItem
-    path="/notifications"
-    disabled={!$signer}
-    isActive={$page?.path.startsWith("/notifications")}>
-    <div class="relative inline-block">
-      Pemberitahuan
-      {#if $hasNewNotifications}
-        <div class="absolute -right-2.5 top-1 h-1.5 w-1.5 rounded bg-accent" />
-      {/if}
-    </div>
-  </MenuDesktopItem>
-  <MenuDesktopItem
-    path="/channels"
-    disabled={!$signer}
-    isActive={$page?.path.startsWith("/channels")}>
-    <div class="relative inline-block">
-      Pesan
-      {#if $hasNewMessages}
-        <div class="absolute -right-2.5 top-1 h-1.5 w-1.5 rounded bg-accent" />
-      {/if}
-    </div>
-  </MenuDesktopItem>
-  <MenuDesktopItem modal path="/groups" disabled={!$signer}>Grup</MenuDesktopItem>
-  <MenuDesktopItem modal path="/lists" disabled={!$signer}>Daftar</MenuDesktopItem>
-  <FlexColumn small class="absolute bottom-0 w-72">
+<nav class="bottom-sai left-sai top-sai fixed z-sidebar flex w-64 flex-col border-r border-solid border-[#2d0a0a] bg-[#191212] px-4 py-6 transition-colors">
+  <div class="mb-6 px-1">
+    <h1 class="font-headline text-[22px] font-bold leading-8 text-accent">Yapping</h1>
+    <p class="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-[#8e6e6e]"
+      >Resistance. Transparency. Sovereign.</p>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-1">
+    <MenuDesktopItem path="/notes" isActive={isFeedPage}>
+      <MaterialIcon name="home" fill={isFeedPage} />
+      <span>Home</span>
+    </MenuDesktopItem>
+    <MenuDesktopItem path="/search" isActive={$page?.path.startsWith("/search")}>
+      <MaterialIcon name="explore" />
+      <span>Discover</span>
+    </MenuDesktopItem>
+    <MenuDesktopItem path="/help/web-of-trust" isActive={isTrustPage}>
+      <MaterialIcon name="verified_user" />
+      <span>Trust Network</span>
+    </MenuDesktopItem>
+    <MenuDesktopItem modal path="/groups" isActive={$page?.path.startsWith("/groups")}>
+      <MaterialIcon name="groups" />
+      <span>Communities</span>
+    </MenuDesktopItem>
+    {#if $pubkey}
+      <MenuDesktopItem path={router.at("people").of($pubkey).toString()} isActive={$page?.path.startsWith("/people")}>
+        <MaterialIcon name="person" />
+        <span>Profile</span>
+      </MenuDesktopItem>
+    {/if}
+  </div>
+
+  <div class="mt-auto pt-4">
     <Button
-      class="staatliches px-8 text-start text-tinted-400 hover:text-tinted-100"
-      on:click={() => setSubMenu("settings")}>Pengaturan</Button>
-    <div class="staatliches flex h-8 gap-2 px-8 text-tinted-500">
-      <Link class="hover:text-tinted-100" href="/about">Tentang</Link> /
-      <Link external class="hover:text-tinted-100" href="/terms.html">Syarat</Link> /
-      <Link external class="hover:text-tinted-100" href="/privacy.html">Privasi</Link>
-    </div>
-    {#if subMenu === "settings"}
-      <MenuDesktopSecondary onEscape={closeSubMenu}>
-        <MenuItem class="staatliches flex items-center gap-4 py-4 pl-8" on:click={toggleTheme}>
-          <i class="fa fa-palette" /> Ganti Tema
-        </MenuItem>
+      class="yap-btn flex w-full items-center justify-center gap-2 rounded py-3 font-bold"
+      on:click={createNote}>
+      <MaterialIcon name="campaign" className="text-[18px]" />
+      <span>Yap</span>
+    </Button>
+
+    {#if $pubkey}
+      <div class="mt-4 flex items-center gap-3 px-1">
+        <Button class="flex items-center gap-2 text-start" on:click={() => (subMenu = "account")}>
+          <PersonCircle class="h-10 w-10" pubkey={$pubkey} />
+          <div class="flex min-w-0 flex-col">
+            <span class="truncate text-sm font-semibold text-[#eedfde]">@{userDisplay}</span>
+            <span class="flex items-center gap-1 font-mono text-xs text-[#8e6e6e]">
+              <MaterialIcon name="lock" className="text-[12px] text-[#f23b0d]" />
+              Secured
+            </span>
+          </div>
+        </Button>
+      </div>
+    {:else}
+      <Link modal class="yap-btn mt-4 flex items-center justify-center rounded py-3" href="/login">
+        Masuk
+      </Link>
+    {/if}
+
+    {#if subMenu === "account"}
+      <MenuDesktopSecondary onEscape={() => (subMenu = null)}>
         <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
-          href="/settings/data"
-          disabled={!$signer}>
-          <i class="fa fa-database" /> Database
-        </MenuItem>
-        <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
-          href="/settings/wallet"
-          disabled={!$signer}>
-          <i class="fa fa-wallet" /> Dompet
-        </MenuItem>
-        <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
-          href="/settings"
-          disabled={!$signer}>
-          <i class="fa fa-cog" /> Pengaturan App
-        </MenuItem>
-        <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
-          href="/settings/content"
-          disabled={!$signer}>
-          <i class="fa fa-volume-xmark" /> Pengaturan Konten
-        </MenuItem>
-      </MenuDesktopSecondary>
-    {:else if subMenu === "account"}
-      <MenuDesktopSecondary onEscape={closeSubMenu}>
-        <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
+          class="flex items-center gap-4 py-4 pl-8"
           href={router.at("people").of($pubkey).toString()}>
-          <i class="fa fa-user-circle" /> Profil
+          <i class="fa fa-user-circle" /> Profile
         </MenuItem>
-        <MenuItem class="staatliches flex items-center gap-4 py-4 pl-8" href="/settings/keys">
-          <i class="fa fa-key" /> Kunci
+        <MenuItem class="flex items-center gap-4 py-4 pl-8" href="/settings/keys">
+          <i class="fa fa-key" /> Keys
         </MenuItem>
         <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
+          class="flex items-center gap-4 py-4 pl-8"
           href={router.at("invite/create").qp({initialPubkey: $pubkey}).toString()}>
           <i class="fa fa-paper-plane" /> Buat Undangan
         </MenuItem>
-        <MenuItem
-          class="staatliches flex items-center gap-4 py-4 pl-8"
-          on:click={() => setSubMenu("accounts")}>
-          <i class="fa fa-right-left" /> Ganti Akun
-        </MenuItem>
-        <MenuItem class="staatliches flex items-center gap-4 py-4 pl-8" href="/logout">
+        <MenuItem class="flex items-center gap-4 py-4 pl-8" href="/logout">
           <i class="fa fa-right-to-bracket" /> Keluar
         </MenuItem>
       </MenuDesktopSecondary>
-    {:else if subMenu === "accounts"}
-      <MenuDesktopSecondary onEscape={closeSubMenu}>
-        {#each Object.values($sessions) as s (s.pubkey)}
-          {#if s.pubkey !== $pubkey}
-            <MenuItem class="py-4" on:click={() => pubkey.set(s.pubkey)}>
-              <div class="flex items-center gap-2">
-                <PersonCircle
-                  class="h-8 w-8 border border-solid border-tinted-200"
-                  pubkey={s.pubkey} />
-                {displayProfileByPubkey(s.pubkey)}
-              </div>
-            </MenuItem>
-          {/if}
-        {/each}
-        <MenuItem
-          class="staatliches flex items-center gap-4 py-4"
-          on:click={() => router.at("login").open()}>
-          <i class="fa fa-plus" /> Tambah Akun
-        </MenuItem>
-      </MenuDesktopSecondary>
     {/if}
-    <div>
-      <Link
-        modal
-        href="/publishes"
-        class="flex h-12 cursor-pointer items-center justify-between border-t border-solid border-neutral-600 pl-7 pr-12">
-        <div class="flex items-center gap-1" class:text-tinted-500={$hud.pending === 0}>
-          <i class="fa fa-hourglass" />
-          {$hud.pending}
-        </div>
-        <div class="flex items-center gap-1" class:text-tinted-500={$hud.success === 0}>
-          <i class="fa fa-cloud-arrow-up" />
-          {$hud.success}
-        </div>
-        <div
-          class="flex items-center gap-1"
-          class:text-accent={$hud.failure > 0}
-          class:text-tinted-500={$hud.failure === 0}>
-          <i class="fa fa-triangle-exclamation" />
-          {$hud.failure}
-        </div>
-      </Link>
-      <div class="h-20 cursor-pointer border-t border-solid border-neutral-600 px-7 py-4">
-        {#if $pubkey}
-          <Button class="flex items-center gap-2 text-start" on:click={() => setSubMenu("account")}>
-            <PersonCircle class="h-10 w-10" pubkey={$pubkey} />
-            <div class="flex min-w-0 flex-col">
-              <span>@{$userDisplay}</span>
-              <PersonHandle class="text-sm" pubkey={$pubkey} />
-            </div>
-          </Button>
-        {:else}
-          <Link modal class="btn btn-accent" href="/login">Masuk</Link>
-        {/if}
-      </div>
-    </div>
-  </FlexColumn>
-</div>
+  </div>
+</nav>

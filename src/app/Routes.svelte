@@ -3,6 +3,7 @@
   import {signer, pubkey} from "@welshman/app"
   import {isMobile} from "src/util/html"
   import Modal from "src/partials/Modal.svelte"
+  import RightSidebar from "src/app/shared/RightSidebar.svelte"
   import {menuIsOpen} from "src/app/state"
   import {router} from "src/app/util/router"
 
@@ -50,7 +51,7 @@
   <div
     id="page"
     class={cx(
-      "m-sai scroll-container relative overflow-auto pb-32 text-neutral-100 lg:pl-72 lg:pt-16",
+      "m-sai scroll-container relative overflow-auto pb-32 text-neutral-100 lg:pl-64 lg:pr-[320px] lg:pt-0",
       {
         "pointer-events-none": $menuIsOpen,
       },
@@ -58,12 +59,13 @@
     {#if $page}
       {@const {component} = router.getMatch($page.path).route}
       {#key router.getKey($page)}
-        <div class="m-auto w-full max-w-2xl border-x border-solid border-neutral-700">
+        <div class="m-auto w-full max-w-[680px] border-x border-solid border-[#2d0a0a]">
           <svelte:component this={component} {...router.getProps($page)} />
         </div>
       {/key}
     {/if}
   </div>
+  <RightSidebar />
 {/key}
 
 {#each [...$modals].reverse().filter(m => !m.virtual) as m, i (router.getKey(m) + i)}

@@ -43,7 +43,7 @@
 <div class="flex items-start gap-3">
   <div class="shrink-0">
     <Button stopPropagation class="text-lg font-bold" on:click={showPerson}>
-      <PersonCircle class="h-10 w-10" pubkey={event.pubkey} />
+      <PersonCircle class="h-12 w-12" pubkey={event.pubkey} />
     </Button>
   </div>
   <div class="flex min-w-0 flex-grow flex-col gap-1">

@@ -51,7 +51,7 @@
 <div on:mousedown={startClick} on:touchstart={startClick} on:click={onClick}>
   <div
     class={cx($$props.class, "text-neutral-100", {
-      "px-4 py-3": !noPad,
+      "p-4": !noPad,
       "cursor-pointer border-l-2 border-transparent transition-colors hover:border-neutral-600":
         interactive,
     })}>

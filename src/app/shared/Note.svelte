@@ -122,10 +122,10 @@
           }}>Tampilkan</Button>
       </p>
     {:else}
-      <div class:!pl-0={headerlessKinds.includes(event.kind)} class="mt-1 sm:pl-[52px]">
+      <div class:!pl-0={headerlessKinds.includes(event.kind)} class="mt-1 sm:pl-[60px]">
         <NoteContent note={event} {depth} {showEntire} {showMedia} />
       </div>
-      <div class:!pl-4={headerlessKinds.includes(event.kind)} class="pt-2 sm:pl-[52px]">
+      <div class:!pl-4={headerlessKinds.includes(event.kind)} class="pt-2 sm:pl-[60px]">
         {#if pending && event.pubkey === $pubkey && !topLevel && thunk}
           <NotePending {thunk} {onReplyAbort} />
         {:else}
