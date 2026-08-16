@@ -38,13 +38,13 @@
     })
 
   const followingFeeds = [
-    makeFollowingFeed("Notes & Replies", noteKinds),
-    makeFollowingFeed("Polls", [POLL]),
-    makeFollowingFeed("Articles", [LONG_FORM]),
+    makeFollowingFeed("Yapping & Balasan", noteKinds),
+    makeFollowingFeed("Polling", [POLL]),
+    makeFollowingFeed("Artikel", [LONG_FORM]),
     makeFollowingFeed("Media", [PICTURE_NOTE]),
-    makeFollowingFeed("Reposts", repostKinds),
-    makeFollowingFeed("Reactions", reactionKinds),
-    makeFollowingFeed("Everything", [...noteKinds, ...repostKinds, ...reactionKinds]),
+    makeFollowingFeed("Repost", repostKinds),
+    makeFollowingFeed("Reaksi", reactionKinds),
+    makeFollowingFeed("Semua", [...noteKinds, ...repostKinds, ...reactionKinds]),
   ]
 
   const editFeeds = () => router.at("feeds").open()
@@ -76,9 +76,9 @@
   )
 </script>
 
-<p class="staatliches text-2xl">Your Feeds</p>
+<p class="staatliches text-2xl">Feed Kamu</p>
 <div class="flex flex-col gap-2">
-  <strong>From People you Follow</strong>
+  <strong>Dari Orang yang Kamu Ikuti</strong>
   <div class="flex flex-wrap gap-1">
     {#each followingFeeds as other}
       <Chip
@@ -91,7 +91,7 @@
   </div>
 </div>
 <div class="flex flex-col gap-2">
-  <strong>Relay Feeds</strong>
+  <strong>Feed Relay</strong>
   <div class="flex flex-wrap gap-1">
     {#each relayFeeds as other}
       <Chip
@@ -103,12 +103,12 @@
     {/each}
     <Chip class="cursor-pointer" on:click={openRelayModal}>
       <i class="fa fa-edit" />
-      Edit relay feeds
+      Atur feed relay
     </Chip>
   </div>
 </div>
 <div class="flex flex-col gap-2">
-  <strong>Your Lists</strong>
+  <strong>Daftar Kamu</strong>
   <div class="flex flex-wrap gap-1">
     {#each listFeeds as other}
       <Chip
@@ -120,12 +120,12 @@
     {/each}
     <Chip class="cursor-pointer" on:click={editLists}>
       <i class="fa fa-edit" />
-      Edit lists
+      Atur daftar
     </Chip>
   </div>
 </div>
 <div class="flex flex-col gap-2">
-  <strong>Custom Feeds</strong>
+  <strong>Feed Kustom</strong>
   <div class="flex flex-wrap gap-1">
     {#each allFeeds as other}
       <Chip

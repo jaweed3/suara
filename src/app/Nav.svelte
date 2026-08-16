@@ -89,7 +89,7 @@
                 <div>
                   <i class="fa fa-circle-notch fa-spin" />
                 </div>
-                Loading more options...
+                Memuat lebih banyak...
               </div>
             {/if}
           </div>

@@ -146,9 +146,9 @@
   <FeedControls {feed} {updateFeed}>
     <div slot="controls">
       {#if $shouldHideReplies}
-        <Button class="btn btn-low border-none opacity-50" on:click={toggleReplies}>Replies</Button>
+        <Button class="btn btn-low border-none opacity-50" on:click={toggleReplies}>Balasan</Button>
       {:else}
-        <Button class="btn btn-accent border-none" on:click={toggleReplies}>Replies</Button>
+        <Button class="btn btn-accent border-none" on:click={toggleReplies}>Balasan</Button>
       {/if}
     </div>
   </FeedControls>
