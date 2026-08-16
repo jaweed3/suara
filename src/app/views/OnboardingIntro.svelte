@@ -1,5 +1,6 @@
 <script lang="ts">
   import Button from "src/partials/Button.svelte"
+  import MaterialIcon from "src/partials/MaterialIcon.svelte"
 
   export let setStage
 
@@ -7,17 +8,17 @@
 
   const cards = [
     {
-      icon: "🛡️",
+      icon: "shield",
       title: "Aman",
       desc: "Bisa anonim, gak ada yang bisa nge-trace kamu.",
     },
     {
-      icon: "🔒",
+      icon: "lock",
       title: "Milikmu",
       desc: "Kuncimu cuma di kamu, gak di server siapa-siapa.",
     },
     {
-      icon: "💬",
+      icon: "chat_bubble",
       title: "Didengar",
       desc: "Curhat dijawab orang yang ngerti, bukan yang ngehakimin.",
     },
@@ -38,7 +39,7 @@
 <div class="flex flex-col gap-3">
   {#each cards as card}
     <div class="flex items-start gap-4 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-4">
-      <span class="text-2xl">{card.icon}</span>
+      <MaterialIcon name={card.icon} className="mt-0.5 text-2xl text-accent" />
       <div class="flex flex-col">
         <strong class="font-headline text-[15px] text-[#eedfde]">{card.title}</strong>
         <p class="text-sm text-[#e7bcbb]">{card.desc}</p>

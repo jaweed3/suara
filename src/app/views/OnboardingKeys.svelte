@@ -3,6 +3,7 @@
   import {themeColors, appName} from "src/partials/state"
   import Link from "src/partials/Link.svelte"
   import Button from "src/partials/Button.svelte"
+  import MaterialIcon from "src/partials/MaterialIcon.svelte"
 
   export let setStage
   export let nstartCompleted
@@ -35,7 +36,7 @@
 </p>
 <div class="flex flex-col gap-3">
   <div class="flex items-start gap-3 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-4">
-    <span class="mt-0.5 text-lg">🌐</span>
+    <MaterialIcon name="language" className="mt-0.5 text-xl text-accent" />
     <div class="flex flex-col gap-1">
       <strong class="text-[#eedfde]">Apa itu nstart?</strong>
       <p class="text-sm text-[#e7bcbb]">
@@ -46,7 +47,7 @@
     </div>
   </div>
   <div class="flex items-start gap-3 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-4">
-    <span class="mt-0.5 text-lg">↩️</span>
+    <MaterialIcon name="refresh" className="mt-0.5 text-xl text-accent" />
     <div class="flex flex-col gap-1">
       <strong class="text-[#eedfde]">Kenapa harus redirect?</strong>
       <p class="text-sm text-[#e7bcbb]">
@@ -57,7 +58,7 @@
     </div>
   </div>
   <div class="flex items-start gap-3 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-4">
-    <span class="mt-0.5 text-lg">🔐</span>
+    <MaterialIcon name="security" className="mt-0.5 text-xl text-accent" />
     <div class="flex flex-col gap-1">
       <strong class="text-[#eedfde]">Terus, keamanannya gimana?</strong>
       <p class="text-sm text-[#e7bcbb]">

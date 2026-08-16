@@ -2,6 +2,7 @@
   import {router} from "src/app/util/router"
   import Button from "src/partials/Button.svelte"
   import Link from "src/partials/Link.svelte"
+  import MaterialIcon from "src/partials/MaterialIcon.svelte"
 
   const startOnboarding = () => router.at("signup").push()
 
@@ -23,18 +24,18 @@
   </div>
 
   <div class="grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-    <div class="flex flex-col gap-2 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-5 text-center">
-      <span class="text-3xl">🛡️</span>
+    <div class="flex flex-col items-center gap-2 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-5 text-center">
+      <MaterialIcon name="shield" className="text-3xl text-accent" />
       <strong class="font-headline text-[#eedfde]">Anonim kapan aja</strong>
       <p class="text-sm text-[#8e6e6e]">Bisa curhat tanpa nama — gak ada yang bisa nge-trace lu.</p>
     </div>
-    <div class="flex flex-col gap-2 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-5 text-center">
-      <span class="text-3xl">💬</span>
+    <div class="flex flex-col items-center gap-2 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-5 text-center">
+      <MaterialIcon name="chat_bubble" className="text-3xl text-accent" />
       <strong class="font-headline text-[#eedfde]">Didengerin, bukan dihakimi</strong>
-      <p class="text-sm text-[#8e6e6e]">Komunitas yang ngerasain hal yang sama — giveaway support asli.</p>
+      <p class="text-sm text-[#8e6e6e]">Komunitas yang ngerasain hal yang sama — itu support asli.</p>
     </div>
-    <div class="flex flex-col gap-2 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-5 text-center">
-      <span class="text-3xl">🔒</span>
+    <div class="flex flex-col items-center gap-2 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-5 text-center">
+      <MaterialIcon name="lock" className="text-3xl text-accent" />
       <strong class="font-headline text-[#eedfde]">Kuncimu cuma di kamu</strong>
       <p class="text-sm text-[#8e6e6e]">Identitas di tangan lu, bukan di server perusahaan.</p>
     </div>

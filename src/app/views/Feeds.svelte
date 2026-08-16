@@ -2,6 +2,7 @@
   import {pubkey} from "@welshman/app"
   import Button from "src/partials/Button.svelte"
   import Feed from "src/app/shared/Feed.svelte"
+  import MaterialIcon from "src/partials/MaterialIcon.svelte"
   import {router} from "src/app/util/router"
   import {defaultFeed} from "src/engine"
 
@@ -38,7 +39,7 @@
 <!-- Anon banner -->
 {#if !$pubkey}
   <div class="flex items-center gap-2 border-b border-solid border-[#2d0a0a] bg-accent/10 px-6 py-2">
-    <span class="text-[18px] text-accent">🛡️</span>
+    <span class="text-[18px] text-accent"><MaterialIcon name="shield" /></span>
     <span class="text-sm text-accent">Anonimitas Terjamin. End-to-end encrypted on Nostr relays.</span>
   </div>
 {/if}
@@ -54,8 +55,8 @@
         <div class="mb-4 h-16 cursor-text text-[#8e6e6e]">Apa yang terjadi? Speak freely.</div>
         <div class="flex items-center justify-between border-t border-solid border-[#2d0a0a] pt-3">
           <div class="flex gap-2 text-accent">
-            <button class="rounded-full p-2 hover:bg-[#302828]">📷</button>
-            <button class="rounded-full p-2 hover:bg-[#302828]">😊</button>
+            <button class="rounded-full p-2 hover:bg-[#302828]"><MaterialIcon name="image" /></button>
+            <button class="rounded-full p-2 hover:bg-[#302828]"><MaterialIcon name="sentiment_satisfied" /></button>
           </div>
           <Button class="yap-btn rounded px-6 py-2 font-bold" on:click={createNote}>Yap</Button>
         </div>
