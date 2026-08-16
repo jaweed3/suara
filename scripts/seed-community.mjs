@@ -52,7 +52,7 @@ for (const seed of seeds) {
     {
       kind: 1,
       created_at: Math.floor(Date.now() / 1000) - Math.floor(Math.random() * 86400 * 3),
-      tags: [["t", "sandwichgeneration"], ["t", "curhat"]],
+      tags: [["t", "sandwich-generation"], ["t", "curhat"]],
       content: seed.content,
     },
     seckey,

@@ -46,41 +46,41 @@
     }
   })
 
-  document.title = "Log In"
+  document.title = "Masuk"
 </script>
 
 <div>
   <FlexColumn narrow large>
     <div class="text-center">
-      <Heading>Welcome!</Heading>
+      <Heading>Selamat datang!</Heading>
       <p>
-        {appName} is built using the
-        <Link class="underline" external href="https://nostr.com/">nostr protocol</Link>, which
-        allows you to own your social identity.
+        {appName} dibangun di atas
+        <Link class="underline" external href="https://nostr.com/">protokol nostr</Link>, yang
+        bikin lu pemilik identitas sosial lu sendiri.
       </p>
     </div>
     <div class="relative flex flex-col gap-4">
       {#if getNip07()}
         <Button class="btn btn-tall btn-accent" on:click={useExtension}>
-          <i class="fa fa-puzzle-piece" /> Use Browser Extension
+          <i class="fa fa-puzzle-piece" /> Pakai Ekstensi Browser
         </Button>
       {/if}
       {#each signerApps as app}
         <Button class="btn btn-tall" on:click={() => useSigner(app)}>
           <img src={app.iconUrl} alt={app.name} width="20" height="20" />
-          Use {app.name}
+          Pakai {app.name}
         </Button>
       {/each}
       <Button class="btn btn-tall" on:click={useBunker}>
-        <i class="fa fa-box" /> Use Remote Signer
+        <i class="fa fa-box" /> Pakai Remote Signer
       </Button>
       <Link external class="btn btn-tall btn-low" href="https://nostrapps.com/#signers">
-        <i class="fa fa-compass" /> Browse Signer Apps
+        <i class="fa fa-compass" /> Cari Aplikasi Signer
       </Link>
     </div>
     <span class="text-center">
-      Need an account?
-      <Button class="underline" on:click={signUp}>Register instead</Button>
+      Belum punya akun?
+      <Button class="underline" on:click={signUp}>Daftar aja</Button>
     </span>
   </FlexColumn>
 </div>

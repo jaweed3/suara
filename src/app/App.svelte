@@ -39,6 +39,7 @@
   import GroupList from "src/app/views/GroupList.svelte"
   import Help from "src/app/views/Help.svelte"
   import Home from "src/app/views/Home.svelte"
+  import Root from "src/app/views/Root.svelte"
   import InviteAccept from "src/app/views/InviteAccept.svelte"
   import InviteCreate from "src/app/views/InviteCreate.svelte"
   import LabelCreate from "src/app/views/LabelCreate.svelte"
@@ -180,7 +181,7 @@
     },
   })
 
-  router.register("/", Home)
+  router.register("/", Root)
   router.register("/topics/:topic", Home)
   router.register("/notes", Home)
   router.register("/notes/create", NoteCreate, {
