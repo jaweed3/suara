@@ -356,10 +356,10 @@
 <form on:submit|preventDefault={() => onSubmit()}>
   <Content size="lg">
     <div class="flex gap-2">
-      <span class="text-2xl font-bold">Create a Note</span>
+      <span class="text-2xl font-bold">Buat Yapping</span>
     </div>
     <FlexColumn>
-      <Field label="What do you want to say?">
+      <Field label="Apa yang mau kamu omongin?">
         <div
           class="rounded-xl border border-solid border-neutral-600 p-3"
           class:bg-white={!showPreview}

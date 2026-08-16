@@ -113,19 +113,19 @@
     {/if}
     {#if hidden && !showHidden}
       <p class="ml-14 mt-4 border-l-2 border-solid border-neutral-600 pl-4 text-neutral-100">
-        You have hidden this note.
+        Kamu menyembunyikan note ini.
         <Button
           stopPropagation
           class="underline"
           on:click={() => {
             showHidden = true
-          }}>Show</Button>
+          }}>Tampilkan</Button>
       </p>
     {:else}
-      <div class:!pl-0={headerlessKinds.includes(event.kind)} class="mt-2 sm:pl-14">
+      <div class:!pl-0={headerlessKinds.includes(event.kind)} class="mt-1 sm:pl-[52px]">
         <NoteContent note={event} {depth} {showEntire} {showMedia} />
       </div>
-      <div class:!pl-10={headerlessKinds.includes(event.kind)} class="pt-4 sm:pl-14">
+      <div class:!pl-4={headerlessKinds.includes(event.kind)} class="pt-2 sm:pl-[52px]">
         {#if pending && event.pubkey === $pubkey && !topLevel && thunk}
           <NotePending {thunk} {onReplyAbort} />
         {:else}

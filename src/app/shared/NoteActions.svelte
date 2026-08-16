@@ -267,35 +267,22 @@
 <button
   tabindex="-1"
   type="button"
-  class="flex w-full justify-between text-neutral-100"
+  class="flex w-full items-center justify-between text-neutral-100"
   on:click|stopPropagation>
-  <div class="flex gap-8 text-sm">
+  <div class="flex items-center justify-between gap-6 text-[15px] sm:gap-10">
     <button
-      class={cx("relative flex items-center gap-1 pt-1 transition-all hover:pb-1 hover:pt-0", {
+      class={cx("flex items-center gap-1.5 py-2 transition-colors hover:text-accent", {
         "pointer-events-none opacity-50": disableActions,
       })}
       on:click={onReplyStart}>
       <Icon icon="message" color={replied ? "accent" : "neutral-100"} />
       {#if $repliesCount > 0 && noteActions.includes("replies")}
-        <span transition:fly|local={{y: 5, duration: 100}} class="-mt-px">{$repliesCount}</span>
+        <span transition:fly|local={{y: 5, duration: 100}}>{$repliesCount}</span>
       {/if}
     </button>
-    {#if env.ENABLE_ZAPS && noteActions.includes("zaps")}
-      <button
-        class={cx("relative flex items-center gap-1 pt-1 transition-all hover:pb-1 hover:pt-0", {
-          "pointer-events-none opacity-50": disableActions || !canZap,
-        })}
-        on:click={startZap}>
-        <Icon icon="bolt" color={zapped ? "accent" : "neutral-100"} />
-        {#if $zapsTotal > 0}
-          <span transition:fly|local={{y: 5, duration: 100}} class="-mt-px"
-            >{formatSats($zapsTotal)}</span>
-        {/if}
-      </button>
-    {/if}
     {#if noteActions.includes("reactions")}
       <button
-        class={cx("relative flex items-center gap-1 pt-1 transition-all hover:pb-1 hover:pt-0", {
+        class={cx("flex items-center gap-1.5 py-2 transition-colors hover:text-accent", {
           "pointer-events-none opacity-50": disableActions || event.pubkey === $pubkey,
         })}
         on:click={() => (liked ? deleteReaction(liked) : react("+"))}>
@@ -303,22 +290,34 @@
           icon="heart"
           color={liked ? "accent" : "neutral-100"}
           class={cx("cursor-pointer", {
-            "fa-beat fa-beat-custom": liked,
+            "text-red-500": liked,
           })} />
         {#if $likesCount > 0}
-          <span transition:fly|local={{y: 5, duration: 100}} class="-mt-px">{$likesCount}</span>
+          <span transition:fly|local={{y: 5, duration: 100}}>{$likesCount}</span>
         {/if}
       </button>
     {/if}
     {#if noteActions.includes("reposts")}
       <button
-        class={cx("relative flex items-center gap-1 pt-1 transition-all hover:pb-1 hover:pt-0", {
+        class={cx("flex items-center gap-1.5 py-2 transition-colors hover:text-accent", {
           "pointer-events-none opacity-50": disableActions || !isSignedEvent(event),
         })}
         on:click={() => (reposted ? deleteReaction(reposted) : repost())}>
-        <i class="fa fa-rotate cursor-pointer" class:text-accent={reposted} />
+        <i class="fa fa-retweet" class:text-accent={reposted} />
         {#if $repostsCount > 0}
-          <span transition:fly|local={{y: 5, duration: 100}} class="-mt-px">{$repostsCount}</span>
+          <span transition:fly|local={{y: 5, duration: 100}}>{$repostsCount}</span>
+        {/if}
+      </button>
+    {/if}
+    {#if env.ENABLE_ZAPS && noteActions.includes("zaps")}
+      <button
+        class={cx("flex items-center gap-1.5 py-2 transition-colors hover:text-accent", {
+          "pointer-events-none opacity-50": disableActions || !canZap,
+        })}
+        on:click={startZap}>
+        <Icon icon="bolt" color={zapped ? "accent" : "neutral-100"} />
+        {#if $zapsTotal > 0}
+          <span transition:fly|local={{y: 5, duration: 100}}>{formatSats($zapsTotal)}</span>
         {/if}
       </button>
     {/if}
@@ -326,12 +325,12 @@
       <Popover theme="transparent" opts={{hideOnClick: true}}>
         <button
           slot="trigger"
-          class="relative flex items-center gap-1 pt-1 transition-all hover:pb-1 hover:pt-0 sm:block">
+          class="relative flex items-center gap-1 py-2 transition-all hover:pb-1 hover:pt-0 sm:block">
           <Icon icon="openwith" color="neutral-100" class="cursor-pointer" />
         </button>
         <div slot="tooltip" class="max-h-[300px] min-w-[180px] overflow-auto">
           <Menu>
-            <MenuItem inert class="bg-neutral-900">Open with:</MenuItem>
+            <MenuItem inert class="bg-neutral-900">Buka dengan:</MenuItem>
             {#each handlers as handler}
               <MenuItem
                 class="flex h-12 items-center justify-between gap-2"
@@ -359,14 +358,14 @@
           <i class="fa fa-hammer text-accent" />
           <span>{pow}</span>
         </div>
-        <div slot="tooltip" class="px-1">This event cost {pow} bits of work</div>
+        <div slot="tooltip" class="px-1">Event ini butuh {pow} bits of work</div>
       </Popover>
     {/if}
     {#if !event.sig}
       <div
         class="staatliches flex h-6 items-center gap-1 rounded bg-neutral-800 px-2 text-neutral-100 transition-colors dark:bg-neutral-600 dark:hover:bg-neutral-500">
         <i class="fa fa-lock text-xs sm:text-accent" />
-        <span class="hidden sm:inline">Encrypted</span>
+        <span class="hidden sm:inline">Enkripsi</span>
       </div>
     {/if}
     {#if $seenOn.size > 0}

@@ -61,7 +61,7 @@
             bind:element={searchInput}
             bind:value={$searchTerm} />
           <Button class="btn z-feature -ml-2 border-none !bg-tinted-700 !text-tinted-200"
-            >Search</Button>
+            >Cari</Button>
         </div>
         {#if $searchTerm}
           <div
@@ -96,9 +96,9 @@
         {/if}
       </div>
       {#if $signer}
-        <Button class="btn btn-accent" on:click={createNote}>Post +</Button>
+        <Button class="btn btn-accent" on:click={createNote}>Yapping +</Button>
       {:else if !$pubkey}
-        <Link modal class="btn btn-accent" href="/login">Log In</Link>
+        <Link modal class="btn btn-accent" href="/login">Masuk</Link>
       {/if}
     </div>
   </div>
@@ -118,9 +118,9 @@
       </div>
       <div>
         {#if $signer}
-          <Button class="btn btn-accent" on:click={createNote}>Post +</Button>
+          <Button class="btn btn-accent" on:click={createNote}>Yapping +</Button>
         {:else if !$pubkey}
-          <Link modal class="btn btn-accent" href="/login">Log In</Link>
+          <Link modal class="btn btn-accent" href="/login">Masuk</Link>
         {/if}
       </div>
       <div class="relative flex w-1/3 justify-end">

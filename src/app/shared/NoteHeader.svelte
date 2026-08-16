@@ -40,18 +40,18 @@
       .open()
 </script>
 
-<div class="flex gap-4">
-  <div>
+<div class="flex items-start gap-3">
+  <div class="shrink-0">
     <Button stopPropagation class="text-lg font-bold" on:click={showPerson}>
       <PersonCircle class="h-10 w-10" pubkey={event.pubkey} />
     </Button>
   </div>
-  <div class="flex min-w-0 flex-grow flex-col gap-2">
-    <div class="flex min-w-0 flex-shrink flex-col items-start justify-between sm:flex-row">
-      <Button stopPropagation class="mr-4 w-full min-w-0" on:click={showPerson}>
+  <div class="flex min-w-0 flex-grow flex-col gap-1">
+    <div class="flex items-center gap-2">
+      <Button stopPropagation class="min-w-0 truncate text-[15px] font-semibold" on:click={showPerson}>
         <PersonName pubkey={event.pubkey} />
       </Button>
-      <div class="flex items-center gap-3 pt-1 text-xs sm:pt-0">
+      <div class="ml-auto flex shrink-0 items-center gap-3 text-xs">
         <Button
           stopPropagation
           on:click={goToDetail}
@@ -65,13 +65,13 @@
         {#if showReply}
           <small class="text-neutral-100">
             <i class="fa fa-code-merge" />
-            <Button stopPropagation class="underline" on:click={goToParent}>View Parent</Button>
+            <Button stopPropagation class="underline" on:click={goToParent}>Lihat Parent</Button>
           </small>
         {/if}
         {#if showRoot}
           <small class="text-neutral-100">
             <i class="fa fa-code-pull-request" />
-            <Button stopPropagation class="underline" on:click={goToThread}>View Thread</Button>
+            <Button stopPropagation class="underline" on:click={goToThread}>Lihat Thread</Button>
           </small>
         {/if}
       </div>
