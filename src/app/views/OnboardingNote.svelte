@@ -40,7 +40,7 @@
   const editor = makeEditor({
     submit: next,
     autofocus: true,
-    content: "Hello world! #introductions",
+    content: "Hari ini gue ngerasa...",
   })
 
   let loading = false
@@ -55,24 +55,23 @@
     class="-ml-1 -mt-2 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-700 text-lg">
     4/4
   </p>
-  <p class="text-2xl font-bold">You're all set!</p>
+  <p class="text-2xl font-bold">Lu siap. Gas curhat.</p>
 </div>
 <p>
-  If you have any questions, just use the #asknostr hashtag — people are always happy to lend a
-  hand.
+  Cerita apa yang mau lu bagi? Gak perlu panjang, gak perlu sempurna. Inget — bisa anonim kapan aja.
 </p>
-<p>Now is a great time to introduce yourself to the Nostr network!</p>
+<p>Daripada cuma baca, cobain dulu nulis—lu bisa mulai dari kalimat di bawah ini.</p>
 <div class="border-l-2 border-solid border-neutral-600 pl-4">
   <EditorContent {editor} class="min-h-24" />
 </div>
 <div class="flex gap-2">
-  <Button class="btn" on:click={prev}><i class="fa fa-arrow-left" /> Back</Button>
-  <Button class="btn btn-accent flex-grow text-center" {loading} on:click={next}>Say Hello</Button>
+  <Button class="btn" on:click={prev}><i class="fa fa-arrow-left" /> Balik</Button>
+  <Button class="btn btn-accent flex-grow text-center" {loading} on:click={next}>Gaspol</Button>
 </div>
 {#if loading}
-  <p class="text-center">Hang on tight, we're calculating proof of work...</p>
+  <p class="text-center">Sebentar, lagi nyiapin tanda tangan digital...</p>
 {:else}
   <Button class="text-center" on:click={skip}>
-    Skip and see your feed <i class="fa fa-arrow-right" />
+    Skip, langsung ke komunitas <i class="fa fa-arrow-right" />
   </Button>
 {/if}

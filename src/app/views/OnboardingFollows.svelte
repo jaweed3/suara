@@ -121,12 +121,14 @@
     class="-ml-1 -mt-2 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-700 text-lg">
     3/4
   </p>
-  <p class="text-2xl font-bold">Find your people</p>
+  <p class="text-2xl font-bold">Temukan cerita yang lu rasain</p>
 </div>
 <p>
-  Pick a category to find some people to follow, or click <Button
-    class="underline"
-    on:click={openPersonSearch}>here</Button> to search for specific accounts.
+  Pilih kategori di bawah, atau langsung gas pol gabung ke komunitas <strong>Sandwich
+  Generation</strong> — tempat orang-orang yang juga nanggung ortu dan anak.
+</p>
+<p>
+  Mau cari akun tertentu? Klik <Button class="underline" on:click={openPersonSearch}>di sini</Button> buat cari.
 </p>
 <div class="grid grid-cols-1 gap-3 overflow-auto xs:grid-cols-2 sm:grid-cols-3">
   {#each state.onboardingLists as event (getAddress(event))}
@@ -145,15 +147,15 @@
 <div class="flex justify-between">
   <div class="flex items-center gap-2">
     <i class="fa fa-info-circle" />
-    <span>Following {quantify(state.follows.length, "person", "people")}</span>
+    <span>Mengikuti {quantify(state.follows.length, "orang")}</span>
     <span>•</span>
     <span>{quantify(state.relays.length, "relay")}</span>
   </div>
-  <Button class="underline" on:click={openSelections}>View selections</Button>
+  <Button class="underline" on:click={openSelections}>Lihat pilihan</Button>
 </div>
 <div class="flex gap-2">
-  <Button class="btn" on:click={prev}><i class="fa fa-arrow-left" /> Back</Button>
-  <Button class="btn btn-accent flex-grow" {loading} on:click={next}>Continue</Button>
+  <Button class="btn" on:click={prev}><i class="fa fa-arrow-left" /> Balik</Button>
+  <Button class="btn btn-accent flex-grow" {loading} on:click={next}>Lanjut</Button>
 </div>
 
 {#if showList}

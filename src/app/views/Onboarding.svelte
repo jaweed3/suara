@@ -60,7 +60,7 @@
   }
 
   const signup = async () => {
-    router.at("notes").push()
+    router.at("topics").of("sandwich-generation").push()
 
     // Immediately request access to any relays with a claim
     for (const {url, claim} of invite?.parsedRelays || []) {

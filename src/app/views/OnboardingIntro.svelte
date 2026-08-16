@@ -1,22 +1,27 @@
 <script lang="ts">
-  import {appName} from "src/partials/state"
-  import MediaVideo from "src/partials/MediaVideo.svelte"
   import Button from "src/partials/Button.svelte"
-  import Modal from "src/partials/Modal.svelte"
 
   export let setStage
 
-  let media
-
   const next = () => setStage("keys")
 
-  const openMedia = url => {
-    media = url
-  }
-
-  const closeMedia = () => {
-    media = null
-  }
+  const cards = [
+    {
+      icon: "🛡️",
+      title: "Aman",
+      desc: "Bisa anonim, gak ada yang bisa nge-trace kamu.",
+    },
+    {
+      icon: "🔒",
+      title: "Milikmu",
+      desc: "Kuncimu cuma di kamu, gak di server siapa-siapa.",
+    },
+    {
+      icon: "💬",
+      title: "Didengar",
+      desc: "Curhat dijawab orang yang ngerti, bukan yang ngehakimin.",
+    },
+  ]
 </script>
 
 <div class="flex gap-3">
@@ -24,40 +29,22 @@
     class="-ml-1 -mt-2 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-700 text-lg">
     1/4
   </p>
-  <p class="text-2xl font-bold">New to Nostr?</p>
+  <p class="text-2xl font-bold">Lu gak sendirian. Gaspol.</p>
 </div>
-<p class="sm:hidden">
-  Take a moment to get acquainted with {appName} — or skip straight to account setup.
+<p class="text-neutral-100">
+  Kerjaan numpuk, ortu butuh biaya, anak juga ditagih-tagih. Dituntut terus, diminta terus.
+  Capek kan? Banyak yang ngerasain hal yang sama di sini.
 </p>
-<p class="hidden sm:block">
-  Learn about the protocol at your own pace by watching one of our tutorial videos.
-</p>
-<div class="flex flex-col gap-2 sm:flex-row">
-  <Button
-    class="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl p-8 text-center sm:w-1/2"
-    on:click={() => openMedia("https://coracle.us-southeast-1.linodeobjects.com/coracle-30s.mp4")}>
-    <div
-      class="absolute inset-0 opacity-75 transition-opacity hover:opacity-100"
-      style="background: url('/images/jakob-owens-8tyCOqTqdqg-unsplash.png'" />
-    <p class="staatliches relative text-5xl text-white">Nostr in 30 seconds</p>
-  </Button>
-  <Button
-    class="relative hidden aspect-[4/3] items-center justify-center overflow-hidden rounded-xl p-8 text-center sm:flex sm:w-1/2"
-    on:click={() =>
-      openMedia("https://coracle.us-southeast-1.linodeobjects.com/coracle-deep-dive.mp4")}>
-    <div
-      class="absolute inset-0 opacity-75 transition-opacity hover:opacity-100"
-      style="background: url('/images/sean-105m46GatAg-unsplash.png'" />
-    <p class="staatliches relative text-5xl text-white">{appName} deep dive</p>
-  </Button>
+<div class="flex flex-col gap-3">
+  {#each cards as card}
+    <div class="flex items-start gap-4 rounded-lg border border-solid border-[#2d0a0a] bg-[#211a1a] p-4">
+      <span class="text-2xl">{card.icon}</span>
+      <div class="flex flex-col">
+        <strong class="font-headline text-[15px] text-[#eedfde]">{card.title}</strong>
+        <p class="text-sm text-[#e7bcbb]">{card.desc}</p>
+      </div>
+    </div>
+  {/each}
 </div>
-<p>
-  When you’re ready, click below and we’ll guide you through the process of creating an account.
-</p>
-<Button class="btn btn-accent text-center" on:click={next}>Let's go!</Button>
-
-{#if media}
-  <Modal onEscape={closeMedia}>
-    <MediaVideo url={media || ""} />
-  </Modal>
-{/if}
+<p>Gak perlu ngerti teknis. Gak perlu takut. Tinggal mulut dibuka, cerita mengalir.</p>
+<Button class="yap-btn rounded px-6 py-3 font-bold" on:click={next}>Mulai</Button>

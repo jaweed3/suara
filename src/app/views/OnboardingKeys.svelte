@@ -27,21 +27,21 @@
     class="-ml-1 -mt-2 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-700 text-lg">
     2/4
   </p>
-  <p class="text-2xl font-bold">Create your Profile</p>
+  <p class="text-2xl font-bold">Buat identitasmu (atau anonim)</p>
 </div>
 <p>
-  To get you started, we'll redirect you to an app called <strong>nstart</strong>, which will guide
-  you through the process of creating and securely storing your account keys.
+  Kita kasih cara buat identitas — isi nama asli, nama samaran, atau langsung gas pol tanpa nama.
+  Mau yang mana terserah lu.
 </p>
 <p>
-  Nstart will also help you fill out your social profile, then when you're done you'll be sent back
-  here to finish setting up your account.
+  Yang jelas, kuncimu cuma satu-satunya yang pegang di tangan lu. Gak ada server, gak ada
+  perusahaan, gak ada siapa-siapa yang bisa buka identitas lu tanpa izin lu.
 </p>
 <div class="flex gap-2">
-  <Button class="btn" on:click={prev}><i class="fa fa-arrow-left" /> Back</Button>
+  <Button class="btn" on:click={prev}><i class="fa fa-arrow-left" /> Balik</Button>
   {#if nstartCompleted}
-    <Button class="btn btn-accent flex-grow" on:click={next}>Continue</Button>
+    <Button class="btn btn-accent flex-grow" on:click={next}>Lanjut</Button>
   {:else}
-    <Link class="btn btn-accent flex-grow" href={nstart} external target="">Continue</Link>
+    <Link class="btn btn-accent flex-grow" href={nstart} external target="">Lanjut</Link>
   {/if}
 </div>
