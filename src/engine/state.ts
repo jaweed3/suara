@@ -566,16 +566,15 @@ export const userFeeds = derived([feeds, pubkey], ([$feeds, $pubkey]: [Published
 export const defaultFeed = derived([userFollows, userFeeds], ([$userFollows, $userFeeds]) => {
   // ponytail: ketika belum follow siapa pun, tampilkan konten curhat (#curhat)
   // supaya feed gak kosong dan user liat contoh yapping.
-  const baseDefinition =
-    $userFollows?.size > 0
-      ? makeScopeFeed(Scope.Follows)
-      : makeTagFeed("#t", "curhat")
+  if ($userFollows?.size > 0) {
+    const definition = normalizeFeedDefinition(
+      makeIntersectionFeed(makeScopeFeed(Scope.Follows), makeKindFeed(...noteKinds)),
+    )
 
-  const definition = normalizeFeedDefinition(
-    makeIntersectionFeed(baseDefinition, makeKindFeed(...noteKinds)),
-  )
+    return makeFeed({definition})
+  }
 
-  return makeFeed({definition})
+  return makeFeed({definition: makeTagFeed("#t", "curhat")})
 })
 
 export const feedFavoriteEvents = deriveEvents({repository, filters: [{kinds: [FEEDS]}]})
