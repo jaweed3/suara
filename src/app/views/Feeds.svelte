@@ -11,16 +11,16 @@
 
   const initialFeed = feed || $defaultFeed
 
-  document.title = "Feeds"
+  document.title = "Yapping"
 </script>
 
 {#if !$pubkey}
   <div class="py-16 text-center">
-    <p class="text-xl">Don't have an account?</p>
+    <p class="text-xl">Belum punya akun?</p>
     <p>
-      Click <Button
+      Klik <Button
         class="text-inherit cursor-pointer bg-transparent p-0 underline"
-        on:click={showLogin}>here</Button> to join the nostr network.
+        on:click={showLogin}>di sini</Button> untuk gabung ke jaringan nostr.
     </p>
   </div>
 {/if}

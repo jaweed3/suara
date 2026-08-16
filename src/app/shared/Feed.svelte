@@ -165,19 +165,19 @@
       let:event
       let:getContext
       let:i>
-      <div in:fly={{y: 20}}>
+      <div in:fly={{y: 20}} class="border-b border-neutral-800 last:border-0">
         <FeedItem showMeta topLevel {getContext} {depth} {anchor} note={event} />
       </div>
       {#if i > 20 && hash(event.id) % 100 === 0 && $promptDismissed < ago(WEEK)}
         <Card class="group flex items-center justify-between">
-          <p class="text-xl">Enjoying Coracle?</p>
+          <p class="text-xl">Suka ngobrol di sini?</p>
           <div class="flex gap-2">
             <Button
               class="hidden text-neutral-400 opacity-0 transition-all group-hover:opacity-100 sm:visible"
               on:click={() => promptDismissed.set(now())}>
-              Dismiss
+              Tutup
             </Button>
-            <Button class="btn btn-accent" on:click={startZap}>Zap the developer</Button>
+            <Button class="btn btn-accent" on:click={startZap}>Zap developer</Button>
           </div>
         </Card>
       {/if}
@@ -188,8 +188,8 @@
 {#if !hideSpinner}
   {#if exhausted}
     <div transition:fly|local={{y: 20, delay: 500}} class="flex flex-col items-center py-24">
-      <img alt="" class="h-20 w-20" src="/images/pumpkin.png" />
-      That's all!
+      <img alt="" class="h-16 w-16 opacity-60" src="/images/yapping.png" />
+      <span class="text-neutral-500">Udah, nggak ada lagi.</span>
     </div>
   {:else}
     <div out:fade|local>

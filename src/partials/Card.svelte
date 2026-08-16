@@ -1,7 +1,6 @@
 <script lang="ts">
   import cx from "classnames"
   import {createEventDispatcher} from "svelte"
-  import AltColor from "src/partials/AltColor.svelte"
 
   export let noPad = false
   export let interactive = false
@@ -50,13 +49,12 @@
 </script>
 
 <div on:mousedown={startClick} on:touchstart={startClick} on:click={onClick}>
-  <AltColor
-    background
-    class={cx($$props.class, "rounded text-neutral-100", {
-      "px-7 py-5": !noPad,
-      "cursor-pointer border-r-4 border-transparent transition-colors hover:border-neutral-600":
+  <div
+    class={cx($$props.class, "text-neutral-100", {
+      "px-4 py-3": !noPad,
+      "cursor-pointer border-l-2 border-transparent transition-colors hover:border-neutral-600":
         interactive,
     })}>
     <slot />
-  </AltColor>
+  </div>
 </div>
