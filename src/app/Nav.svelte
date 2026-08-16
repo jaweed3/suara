@@ -47,8 +47,8 @@
 
 <svelte:window bind:innerWidth />
 
-<!-- top nav -->
-{#if innerWidth >= 1024}
+<!-- top nav: hidden on desktop (referensi Rebel pakai search di right sidebar + login di sidebar kiri) -->
+{#if false && innerWidth >= 1024}
   <div class="top-sai left-sai right-sai fixed z-nav">
     <div class="flex h-16 items-center justify-end gap-8 bg-[#191212] pl-64 pr-8">
       <div class="relative">
