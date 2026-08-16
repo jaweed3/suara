@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yapping Thread - Post Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#e7bcbb",
+                        "on-tertiary-container": "#560c00",
+                        "inverse-on-surface": "#372e2e",
+                        "surface-tint": "#ffb3b2",
+                        "on-error": "#690005",
+                        "surface-container-low": "#211a1a",
+                        "secondary-fixed": "#ffdad7",
+                        "inverse-surface": "#eedfde",
+                        "surface-bright": "#403737",
+                        "outline-variant": "#5d3f3f",
+                        "on-secondary-container": "#e9a8a5",
+                        "tertiary-fixed": "#ffdad2",
+                        "primary": "#ffb3b2",
+                        "tertiary": "#ffb4a3",
+                        "on-tertiary": "#631000",
+                        "on-primary": "#680014",
+                        "primary-fixed-dim": "#ffb3b2",
+                        "secondary": "#f8b6b2",
+                        "on-primary-container": "#5b0010",
+                        "tertiary-container": "#ff5630",
+                        "surface": "#191212",
+                        "on-secondary-fixed-variant": "#693a38",
+                        "error": "#ffb4ab",
+                        "outline": "#ae8787",
+                        "on-secondary": "#4e2423",
+                        "inverse-primary": "#bf002d",
+                        "on-tertiary-fixed-variant": "#8b1a00",
+                        "surface-container": "#251e1e",
+                        "on-secondary-fixed": "#34100f",
+                        "on-primary-fixed-variant": "#920020",
+                        "surface-container-high": "#302828",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb4a3",
+                        "secondary-fixed-dim": "#f8b6b2",
+                        "surface-container-highest": "#3b3332",
+                        "on-primary-fixed": "#410009",
+                        "secondary-container": "#6b3c3a",
+                        "background": "#191212",
+                        "primary-fixed": "#ffdad9",
+                        "surface-variant": "#3b3332",
+                        "primary-container": "#ff525f",
+                        "surface-dim": "#191212",
+                        "on-surface": "#eedfde",
+                        "on-background": "#eedfde",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#3d0600",
+                        "surface-container-lowest": "#130d0c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "stack-tight": "8px",
+                        "gutter": "12px",
+                        "margin-desktop": "24px",
+                        "stack-loose": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "label-caps": ["JetBrains Mono"],
+                        "action-text": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "action-text": ["14px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "28px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a0505; /* Black Cherry base */
+        }
+        .yap-card {
+            background-color: #150808; /* Elevated deep mahogany */
+            border: 1px solid #2d0a0a;
+        }
+        .yap-card:hover {
+            border-color: #ee113d;
+        }
+        .yap-btn {
+            background-color: #ee113d;
+            color: #ffffff;
+        }
+        .yap-input {
+            background-color: #050202;
+            caret-color: #ee113d;
+        }
+        
+        /* Thin stroke icons */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Zap interaction */
+        .action-zap:hover .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+            color: #f23b0d; /* Tertiary zap color */
+        }
+        .action-icon:hover .material-symbols-outlined {
+             font-variation-settings: 'FILL' 1;
+             color: #ee113d;
+        }
+
+        /* Tonal Blur overlay for sticky reply */
+        .reply-bar-blur {
+            backdrop-filter: blur(20px);
+            background-color: rgba(21, 8, 8, 0.85); /* Semi-transparent mahogany */
+        }
+        
+        /* Grid setup */
+        .main-grid {
+            display: grid;
+            grid-template-columns: minmax(auto, 256px) minmax(auto, 680px) minmax(auto, 300px);
+            gap: 24px;
+            justify-content: center;
+        }
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: minmax(auto, 256px) 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen">
+<!-- Top Navigation (Mobile Only) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile py-unit border-b border-outline-variant backdrop-blur-xl bg-[#0a0505]/90">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="arrow_back" onclick="history.back()">arrow_back</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Yapping</span>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+</div>
+</header>
+<div class="main-grid max-w-[1440px] mx-auto px-margin-desktop md:py-margin-desktop">
+<!-- Left Sidebar Navigation (Desktop) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-48px)] sticky top-margin-desktop py-margin-desktop px-4 border-r border-outline-variant bg-surface dark:bg-surface">
+<div class="mb-8 px-4">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary">Yapping</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Resistance. Transparency. Sovereign.</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-action-text text-action-text">Home</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-action-text text-action-text">Discover</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-high hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-action-text text-action-text">Trust Network</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-action-text text-action-text">Communities</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-action-text text-action-text">Profile</span>
+</a>
+</nav>
+<div class="mt-auto pt-4">
+<button class="w-full yap-btn font-action-text text-action-text py-3 rounded-full hover:bg-inverse-primary transition-colors active:scale-95">Yap</button>
+<div class="flex items-center gap-3 mt-6 px-2">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A gritty, high-contrast digital avatar portrait of a user in a dark room illuminated only by harsh red monitor light. The style is cyberpunk-adjacent, emphasizing anonymity and digital rebellion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuLyMploOE_rw77djGruC7LKcyyo9rQbN3qI4lTrJKocc1M2aVEyQJzn9emu1oNu6ymWywSKRUV-XN8ldI5SMWcXUJbsWcnzDmWGED0LEFhJTib0pNlyGscGBnD564wkZpcT_YTNAJ2eHoJk54j0pVAv3JqrBeEg8lTMY4RYGTPpP7ZWVKo50gf488XVfRZItaEsAO7avzexeY2j80cZ8B0TJSSAfH_kLlRSvdkYYIggIBthaFIdXu"/>
+<div class="flex flex-col">
+<span class="font-action-text text-action-text text-on-surface">@cipher_punk</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant opacity-70">Secured</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Feed Canvas -->
+<main class="w-full max-w-[680px] flex flex-col gap-0 pb-32">
+<!-- Context Header (Desktop) -->
+<div class="hidden md:flex items-center gap-4 py-4 border-b border-outline-variant mb-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" onclick="history.back()">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">Thread</span>
+</div>
+<!-- Primary Post -->
+<article class="yap-card p-gutter md:p-margin-desktop mb-4">
+<div class="flex items-start gap-3">
+<img class="w-12 h-12 rounded-lg object-cover border border-outline-variant" data-alt="A striking, brutalist digital avatar of a corporate whistleblower. The image features sharp, geometric rendering with deep mahogany shadows and stark white highlights, emphasizing a defiant and serious tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwaubvxuu0Q-EpeUpjsWwAYF1tSYuBxBYmicnqvkT6TMScjgWkgGDPns-jQVeYlnb0bgGTs8Rca54ZX_zJRY7PgP_bcbnmbdUWoSQe0TPICmY9RmVCmr_7BDcoDbfm5G29Y8DMGMtTxDdqCU92zct9YsFreafta9wwW8gx1E1lRvjeCF6C-v5wkIENtzQzz4GAwRQhTpcilxlK52gnSHcl3bVs-ZSx12YSzjDgv1WS3QWXkDUPcjRl"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-action-text text-action-text text-on-surface font-bold truncate">Aria Vance</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">@aria_v</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2h</span>
+<!-- Trust Indicator -->
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded border border-outline-variant ml-2">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container" data-icon="shield">shield</span>
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface">WOT 92%</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-2 mb-3 whitespace-pre-wrap">The latest quarterly report from OmniCorp intentionally obfuscates their environmental impact data. 
+
+I've cross-referenced their public filings with leaked internal documents (hash attached). They are shifting the carbon burden to their offshore subsidiaries while claiming 'Net Zero' domestically. 
+
+This is not an accounting error. This is structural deceit.</p>
+<!-- Attachment (Bento style) -->
+<div class="grid grid-cols-2 gap-2 mb-4 rounded-lg overflow-hidden border border-outline-variant">
+<div class="col-span-2 relative h-48 bg-surface-container-lowest">
+<div class="bg-cover bg-center w-full h-full opacity-70 mix-blend-screen" data-alt="A stark, high-contrast screenshot of a leaked corporate document. The text is dense and technical, partially redacted with heavy black bars. A glowing red bounding box highlights a specific discrepancy in financial figures, embodying a raw, investigative aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5T-tEkaUUkHFCDn-y_sO4p_2PjkU9pLC2EqrTMV9rWtHBBYC5D937Bqz1UjIhDwEgxvdmGCd5nTP3iYff4FA4_MqtrfAWR8phgS2p0daiARXXO_PK3OOfEjQ-ZO1jiuyHXmRkWNCVYPH3e-_qh8gRM8Sii1ZZe-_tsf5BK-eouTq6TSOpJuZObdmh67cXxOZFpuZxvTr9tSSVS_zWkr2Oj4a1r6pX8EYOQ0QOgL1PBQL1ikTLqOLc')"></div>
+<div class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 rounded border border-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary" data-icon="lock">lock</span>
+<span class="font-label-caps text-label-caps text-[10px] text-primary">PGP Signed</span>
+</div>
+</div>
+</div>
+<!-- Metadata Tag -->
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps rounded border border-outline-variant text-[10px]">#CorporateAccountability</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps rounded border border-outline-variant text-[10px]">SHA256: 8f4e2b...</span>
+</div>
+<!-- Action Bar -->
+<div class="flex justify-between items-center text-on-surface-variant border-t border-outline-variant pt-3 mt-2">
+<button class="flex items-center gap-1 action-icon group transition-colors">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-body-sm text-body-sm">142</span>
+</button>
+<button class="flex items-center gap-1 action-icon group transition-colors">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="sync">sync</span>
+<span class="font-body-sm text-body-sm">3k</span>
+</button>
+<button class="flex items-center gap-1 action-zap group transition-colors">
+<span class="material-symbols-outlined group-hover:text-[#f23b0d]" data-icon="bolt">bolt</span>
+<span class="font-body-sm text-body-sm">12.5k</span>
+</button>
+<button class="flex items-center gap-1 action-icon group transition-colors">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Reply Thread Separator -->
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-background px-4 font-label-caps text-label-caps text-on-surface-variant">Threaded Responses</span>
+</div>
+</div>
+<!-- Comment 1 -->
+<article class="yap-card border-none border-t border-outline-variant p-gutter md:p-margin-desktop mb-0 rounded-none relative">
+<!-- Thread Line indicator -->
+<div class="absolute left-7 top-14 bottom-0 w-0.5 bg-outline-variant hidden sm:block"></div>
+<div class="flex items-start gap-3 relative z-10">
+<img class="w-10 h-10 rounded-lg object-cover border border-outline-variant flex-shrink-0 bg-surface-container" data-alt="A minimalist, brutalist geometric shape serving as an anonymous avatar. The shape is a stark white diamond against a pitch-black background, distressed with digital noise and scanlines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI1Gw2Pgle9ovlQMhxsAYK9d-cYC_4NsUnY3NghHwIRMKqpuRB0MCyHkOuBbfvpK-AQxlkwgpg8V4gpY05gPLpfsWzu7zy6J8iOlKWvLJ4BHloMIU7FhnPfayAFX94S2cSwK7mBvU-gfbqoJZqA31TQ4UNCeU75Ij-Wm6WBNyny5nOfrfcWHmjWkNnZ7zN_6DJaZsBvM9RAocw7vy-14uP36mYl51CpY2PWevHJXsvtCZH8LTgK5no"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-action-text text-action-text text-on-surface font-bold truncate">Null Pointer</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">@null_0x</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">1h</span>
+<!-- In Network Indicator -->
+<div class="flex items-center gap-1 bg-[#1a0a0d] px-1.5 py-0.5 rounded border border-primary ml-2">
+<span class="material-symbols-outlined text-[12px] text-primary" data-icon="check_circle">check_circle</span>
+<span class="font-label-caps text-label-caps text-[9px] text-primary">In Network</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 mb-2">Verified the hash against the datadump from last week. It matches. They are actively manipulating the ESG reporting APIs before the data hits the public dashboard.</p>
+<!-- Action Bar Micro -->
+<div class="flex items-center gap-6 text-on-surface-variant mt-2">
+<button class="flex items-center gap-1 action-icon group transition-colors">
+<span class="material-symbols-outlined text-[18px] group-hover:text-primary" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-body-sm text-body-sm text-[12px]">12</span>
+</button>
+<button class="flex items-center gap-1 action-zap group transition-colors">
+<span class="material-symbols-outlined text-[18px] group-hover:text-[#f23b0d]" data-icon="bolt">bolt</span>
+<span class="font-body-sm text-body-sm text-[12px]">450</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Nested Comment 1.1 -->
+<article class="yap-card border-none p-gutter md:p-margin-desktop mb-0 rounded-none relative pl-12 sm:pl-16 bg-surface-container-lowest">
+<div class="flex items-start gap-3">
+<img class="w-8 h-8 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="A dark, moody digital illustration of a hooded figure viewed from behind, looking at multiple glowing red screens in a pitch-black server room. High contrast, gritty texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbRcd2S4kzdkOG8D2oqwAsDQkyMzKA0KWjp4OGJXTsG0ewSqal_KtFjBMIHWdIMjDg231FyEYr5dYTvqPyqbstCZA7m8eWO71DYc8QaopF546A0ksx2PWaxHjUyHYZfEr1sdZ7wb9bhZKSTmNHDCuEFXT7C6eW2heV5IVcrUkSk1w2_I1fdeopqYf0vwgbcLggv9mHuoJzaAKL8TOG_U99ndz6AI7mil1m-RCU_mj7vq08fwBezrZ0"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-action-text text-action-text text-on-surface font-bold truncate">Data Wraith</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">@wraith_d</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">45m</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 mb-2">Can someone run a diff on the API endpoints they deprecated last month? Might show where they routed the dirty data.</p>
+<!-- Action Bar Micro -->
+<div class="flex items-center gap-6 text-on-surface-variant mt-2">
+<button class="flex items-center gap-1 action-icon group transition-colors">
+<span class="material-symbols-outlined text-[18px] group-hover:text-primary" data-icon="chat_bubble">chat_bubble</span>
+</button>
+<button class="flex items-center gap-1 action-zap group transition-colors">
+<span class="material-symbols-outlined text-[18px] group-hover:text-[#f23b0d]" data-icon="bolt">bolt</span>
+<span class="font-body-sm text-body-sm text-[12px]">89</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Comment 2 -->
+<article class="yap-card border-none border-t border-outline-variant p-gutter md:p-margin-desktop mb-0 rounded-none relative">
+<div class="flex items-start gap-3">
+<img class="w-10 h-10 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="A highly stylized, glitch-art portrait of a woman. The image is fragmented with horizontal bands of bright red and deep black, suggesting digital interference and anti-surveillance aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJgPZj8UE_jt9A6rSCJQ64dQAWJxwMLhvsWjQXNmdyDNjptcLmV_CyJNVwLNqrWWUuGBTnuanxwjD3WLd8NfGIh__BX_nTJwLiVZIz2zl-RG3aXmjYQLDHAo7H1iimHUtpKdNZt_K5nIxLfDPlX4aHexhwaQ-kf2tMbq-Jf5y6KoDvLxU-W3lwAkLJ_FpGdTMqEyol922Jk5tqq9QkZVX42FZS0nNE3DFceK13D1y4j2G7exVWi1tK"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-action-text text-action-text text-on-surface font-bold truncate">Sarah K.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">@sk_journal</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">30m</span>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded border border-outline-variant ml-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="warning">warning</span>
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface-variant">WOT 45%</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 mb-2">We are running this on the front page of the Independent tomorrow. Keep the analysis coming, need to synthesize the technical bits for a lay audience.</p>
+<div class="flex items-center gap-6 text-on-surface-variant mt-2">
+<button class="flex items-center gap-1 action-icon group transition-colors">
+<span class="material-symbols-outlined text-[18px] group-hover:text-primary" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-body-sm text-body-sm text-[12px]">3</span>
+</button>
+<button class="flex items-center gap-1 action-zap group transition-colors">
+<span class="material-symbols-outlined text-[18px] group-hover:text-[#f23b0d]" data-icon="bolt">bolt</span>
+<span class="font-body-sm text-body-sm text-[12px]">210</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</main>
+<!-- Right Sidebar (Trending/Context - Desktop) -->
+<aside class="hidden xl:block w-[300px] sticky top-margin-desktop h-[calc(100vh-48px)] py-margin-desktop">
+<div class="yap-card rounded-xl p-4 mb-4">
+<h3 class="font-action-text text-action-text font-bold text-on-surface mb-3 border-b border-outline-variant pb-2">Contextual Intelligence</h3>
+<div class="flex flex-col gap-3">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">ENTITY</span>
+<span class="font-body-md text-body-md text-primary font-medium">OmniCorp Global</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">RELATED TAGS</span>
+<div class="flex flex-wrap gap-1 mt-1">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps rounded border border-outline-variant text-[9px]">#ESG_Fraud</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps rounded border border-outline-variant text-[9px]">#Leak</span>
+</div>
+</div>
+</div>
+</div>
+<div class="yap-card rounded-xl p-4">
+<h3 class="font-action-text text-action-text font-bold text-on-surface mb-3 border-b border-outline-variant pb-2">Network Consensus</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Signal strength regarding this claim within your Trust Network.</p>
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden border border-outline-variant flex">
+<div class="h-full bg-[#f23b0d] w-[85%]"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface-variant">85% Verified</span>
+<span class="font-label-caps text-label-caps text-[10px] text-on-surface-variant">15% Pending</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Sticky Reply Area -->
+<div class="fixed bottom-0 left-0 right-0 z-40 reply-bar-blur border-t border-outline-variant py-3 px-margin-mobile md:px-margin-desktop shadow-[0_-10px_30px_rgba(10,5,5,0.8)]">
+<div class="max-w-[680px] mx-auto md:ml-[304px] xl:mx-auto xl:w-[680px] relative"> <!-- Alignment hack to match feed width -->
+<div class="flex items-end gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant hidden sm:block mb-1" data-alt="A small, circular avatar placeholder showing a high-contrast abstract texture, mostly deep reds and blacks, representing the current logged-in user." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSO2PI-UpUqf85rzGp0O95udQKNXDtuv1_rbf54HU6jU7NP5qnqaFpwnBBz6M5LmgFMf2OdYLUZ36drcebCyfgJVlvRRgdjry44misuXoN_xXwTCeMZodYkXbJLQFQt6ekdkjIZljSKQnasNllfNS9St9FkuAgMNeL0B1YNTFb7QoKYoiNOKLRylycI3vpVphnxq47cWljV70s95PCSEHv53bO5RoElqIh1hsEtNlUcpl4wHTsUyQE"/>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden focus-within:border-primary transition-colors">
+<textarea class="w-full bg-transparent border-none text-on-surface font-body-md text-body-md focus:ring-0 p-3 min-h-[44px] max-h-[120px] resize-none placeholder-on-surface-variant/50" placeholder="Add your signal to the noise..." rows="1"></textarea>
+<div class="flex justify-between items-center px-3 py-2 bg-surface-container-high border-t border-outline-variant">
+<div class="flex gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="image">image</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="gif_box">gif_box</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="mood">mood</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
+</button>
+</div>
+<button class="yap-btn font-action-text text-action-text px-4 py-1.5 rounded-full hover:bg-inverse-primary transition-colors active:scale-95 text-sm">Yap Reply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Auto-resize textarea script -->
+<script>
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = 0;
+            this.style.height = (this.scrollHeight) + "px";
+        }
+    </script>
+</body></html>

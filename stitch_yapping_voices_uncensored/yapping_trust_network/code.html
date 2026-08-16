@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trust Network - Yapping</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#e7bcbb",
+                        "on-tertiary-container": "#560c00",
+                        "inverse-on-surface": "#372e2e",
+                        "surface-tint": "#ffb3b2",
+                        "on-error": "#690005",
+                        "surface-container-low": "#211a1a",
+                        "secondary-fixed": "#ffdad7",
+                        "inverse-surface": "#eedfde",
+                        "surface-bright": "#403737",
+                        "outline-variant": "#5d3f3f",
+                        "on-secondary-container": "#e9a8a5",
+                        "tertiary-fixed": "#ffdad2",
+                        "primary": "#ffb3b2",
+                        "tertiary": "#ffb4a3",
+                        "on-tertiary": "#631000",
+                        "on-primary": "#680014",
+                        "primary-fixed-dim": "#ffb3b2",
+                        "secondary": "#f8b6b2",
+                        "on-primary-container": "#5b0010",
+                        "tertiary-container": "#ff5630",
+                        "surface": "#191212",
+                        "on-secondary-fixed-variant": "#693a38",
+                        "error": "#ffb4ab",
+                        "outline": "#ae8787",
+                        "on-secondary": "#4e2423",
+                        "inverse-primary": "#bf002d",
+                        "on-tertiary-fixed-variant": "#8b1a00",
+                        "surface-container": "#251e1e",
+                        "on-secondary-fixed": "#34100f",
+                        "on-primary-fixed-variant": "#920020",
+                        "surface-container-high": "#302828",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb4a3",
+                        "secondary-fixed-dim": "#f8b6b2",
+                        "surface-container-highest": "#3b3332",
+                        "on-primary-fixed": "#410009",
+                        "secondary-container": "#6b3c3a",
+                        "background": "#191212",
+                        "primary-fixed": "#ffdad9",
+                        "surface-variant": "#3b3332",
+                        "primary-container": "#ff525f",
+                        "surface-dim": "#191212",
+                        "on-surface": "#eedfde",
+                        "on-background": "#eedfde",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#3d0600",
+                        "surface-container-lowest": "#130d0c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "stack-tight": "8px",
+                        "gutter": "12px",
+                        "margin-desktop": "24px",
+                        "stack-loose": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "label-caps": ["JetBrains Mono"],
+                        "action-text": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "action-text": ["14px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "28px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #191212; color: #eedfde; }
+        .glass-panel { background: rgba(37, 30, 30, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid #5d3f3f; }
+        .cyber-border { border: 1px solid #2d0a0a; transition: border-color 0.2s ease-in-out; }
+        .cyber-border:hover { border-color: #ee113d; }
+        .cyber-input { background-color: #050202; border: 1px solid #5d3f3f; color: #eedfde; font-family: 'JetBrains Mono', monospace; }
+        .cyber-input:focus { outline: none; border-color: #ee113d; }
+        .yap-btn { background-color: #ee113d; color: white; font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; transition: transform 0.1s; }
+        .yap-btn:active { transform: scale(0.98); }
+        .status-secured { color: #ee113d; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden antialiased selection:bg-primary-container selection:text-white">
+<!-- Side Navigation -->
+<nav class="bg-surface dark:bg-surface h-screen w-64 border-r border-outline-variant flex flex-col py-margin-desktop px-4 hidden md:flex shrink-0">
+<div class="mb-stack-loose px-4">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary">Yapping</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-unit">Resistance. Transparency. Sovereign.</p>
+</div>
+<div class="flex-1 flex flex-col gap-unit mt-stack-loose">
+<a class="flex items-center gap-gutter px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform group" href="#">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 0; transition-colors group-hover:text-primary">home</span>
+<span class="font-action-text text-action-text">Home</span>
+</a>
+<a class="flex items-center gap-gutter px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform group" href="#">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 0; transition-colors group-hover:text-primary">explore</span>
+<span class="font-action-text text-action-text">Discover</span>
+</a>
+<a class="flex items-center gap-gutter px-4 py-3 rounded text-primary font-bold border-r-4 border-primary bg-surface-container-high active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-action-text text-action-text">Trust Network</span>
+</a>
+<a class="flex items-center gap-gutter px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform group" href="#">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 0; transition-colors group-hover:text-primary">groups</span>
+<span class="font-action-text text-action-text">Communities</span>
+</a>
+<a class="flex items-center gap-gutter px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 transition-transform group" href="#">
+<span class="material-symbols-outlined font-variation-settings: 'FILL' 0; transition-colors group-hover:text-primary">person</span>
+<span class="font-action-text text-action-text">Profile</span>
+</a>
+</div>
+<div class="mt-auto px-4">
+<button class="w-full yap-btn py-3 rounded font-action-text text-action-text flex justify-center items-center gap-unit">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+                Yap
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 h-screen overflow-y-auto bg-background p-margin-mobile md:p-margin-desktop scroll-smooth">
+<header class="mb-stack-loose max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-stack-tight">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Trust Network</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-unit max-w-2xl">Manage your Web-of-Trust (WoT). Verify identities, monitor network health, and fortify your sovereign connections.</p>
+</div>
+<div class="flex items-center gap-gutter w-full md:w-auto">
+<div class="relative flex-1 md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">search</span>
+<input class="cyber-input w-full py-2 pl-10 pr-3 rounded text-body-sm font-body-sm focus:ring-0" placeholder="SEARCH PUBLIC KEY..." type="text"/>
+</div>
+<button class="glass-panel p-2 rounded hover:bg-surface-variant transition-colors text-on-surface" title="Import Contacts">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</header>
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Metrics & Visualization -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Trust Score Card -->
+<div class="glass-panel rounded-lg p-margin-desktop relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container opacity-10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:opacity-20 transition-opacity"></div>
+<div class="flex items-center justify-between mb-stack-loose relative z-10">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase">Network Integrity</h3>
+<span class="material-symbols-outlined status-secured">shield</span>
+</div>
+<div class="flex items-baseline gap-unit relative z-10">
+<span class="font-headline-xl text-headline-xl text-primary font-black">94.2</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ 100</span>
+</div>
+<div class="mt-stack-tight relative z-10">
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[94.2%] rounded-full"></div>
+</div>
+</div>
+<div class="mt-stack-loose grid grid-cols-2 gap-stack-tight relative z-10">
+<div>
+<p class="font-label-caps text-[10px] text-outline-variant">DIRECT VERIFICATIONS</p>
+<p class="font-action-text text-action-text text-on-surface">142</p>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-outline-variant">DEGREES OF SEPARATION</p>
+<p class="font-action-text text-action-text text-on-surface">Avg 2.4</p>
+</div>
+</div>
+</div>
+<!-- Network Reach Visualization (Placeholder for structural context) -->
+<div class="glass-panel rounded-lg p-margin-desktop flex flex-col h-64">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-stack-tight">WoT Topology</h3>
+<div class="flex-1 bg-surface rounded cyber-border relative overflow-hidden flex items-center justify-center">
+<!-- Abstract representation of network -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at center, #ff525f 1px, transparent 1px); background-size: 20px 20px;"></div>
+<span class="font-label-caps text-on-surface-variant z-10 text-center">NETWORK GRAPH<br/><span class="text-[10px] text-outline">ENCRYPTED</span></span>
+</div>
+</div>
+<!-- Action Card -->
+<div class="bg-surface-container rounded-lg p-margin-desktop cyber-border flex flex-col gap-stack-tight">
+<h3 class="font-action-text text-action-text text-on-surface">Expand Network</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Import known pubkeys from established Nostr relays to strengthen your graph.</p>
+<button class="mt-unit w-full py-2 bg-surface-bright hover:bg-outline-variant transition-colors rounded font-action-text text-action-text text-primary flex items-center justify-center gap-unit">
+<span class="material-symbols-outlined text-[16px]">cable</span>
+                        Sync Relays
+                    </button>
+</div>
+</div>
+<!-- Right Column: Verified Witnesses List -->
+<div class="lg:col-span-8 flex flex-col h-full min-h-[600px]">
+<div class="glass-panel rounded-lg flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<div class="p-margin-desktop border-b border-outline-variant flex justify-between items-center bg-surface/50">
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-primary">visibility</span>
+<h3 class="font-action-text text-action-text text-on-surface">Verified Witnesses</h3>
+</div>
+<div class="flex gap-unit">
+<button class="font-label-caps text-[10px] bg-surface-variant px-2 py-1 rounded text-on-surface hover:text-primary transition-colors">ALL</button>
+<button class="font-label-caps text-[10px] px-2 py-1 rounded text-on-surface-variant hover:text-on-surface transition-colors">MUTUAL</button>
+<button class="font-label-caps text-[10px] px-2 py-1 rounded text-on-surface-variant hover:text-on-surface transition-colors">PENDING</button>
+</div>
+</div>
+<!-- List Area -->
+<div class="flex-1 overflow-y-auto p-gutter flex flex-col gap-unit">
+<!-- List Item 1 -->
+<div class="bg-surface rounded p-gutter cyber-border flex items-center justify-between group">
+<div class="flex items-center gap-gutter">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A dark, moody digital portrait of a rebellious tech figure wearing a black hoodie in a dimly lit cyberpunk alleyway. The scene is illuminated by striking crimson neon lights reflecting off wet pavement. High contrast, gritty texture, emphasizing a sovereign, underground identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLeAnLPs8ONUnzwcEfjTkbyIzkx37C-kp1VC7W0RdMbBwzrSDyoaHnvOUIs9taLQAQ6UitcT1qksCnCZGVDQbt_TxPY9IPtL0ktV9kthzjBidV34Mh7a5JS56EP6XVYQRJ400Fo938Bf329Uco-NBktiBhQ1zAcOcI8g--NTAXwA4jmy5SEcowWf2bI_n-GGrWqAjO4YO46S_21lwCZXkISe0OlwX21mTf2E-8gidLWmTbnkw8kzbJ"/>
+</div>
+<div>
+<div class="flex items-center gap-unit">
+<p class="font-action-text text-action-text text-on-surface">0xCipherPunk</p>
+<span class="material-symbols-outlined text-[14px] status-secured" title="Verified">verified</span>
+</div>
+<p class="font-label-caps text-[10px] text-outline-variant truncate w-32 md:w-64">npub1xyz...789abc</p>
+</div>
+</div>
+<div class="flex items-center gap-stack-tight">
+<div class="hidden md:flex flex-col items-end mr-gutter">
+<span class="font-label-caps text-[10px] text-on-surface-variant">TRUST WEIGHT</span>
+<div class="w-16 h-1 bg-surface-container-highest rounded mt-1 overflow-hidden"><div class="bg-primary h-full w-[85%]"></div></div>
+</div>
+<button class="p-2 rounded hover:bg-surface-variant text-on-surface-variant hover:text-error transition-colors" title="Revoke Trust">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+<button class="p-2 rounded bg-surface-variant hover:bg-outline-variant text-on-surface transition-colors" title="View Profile">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="bg-surface rounded p-gutter cyber-border flex items-center justify-between group">
+<div class="flex items-center gap-gutter">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden flex items-center justify-center border border-outline-variant">
+<span class="font-label-caps text-on-surface-variant">S</span>
+</div>
+<div>
+<div class="flex items-center gap-unit">
+<p class="font-action-text text-action-text text-on-surface">SatoshiN</p>
+<span class="material-symbols-outlined text-[14px] text-outline-variant" title="Pending Verification">hourglass_empty</span>
+</div>
+<p class="font-label-caps text-[10px] text-outline-variant truncate w-32 md:w-64">npub1abc...123xyz</p>
+</div>
+</div>
+<div class="flex items-center gap-stack-tight">
+<button class="px-3 py-1 bg-primary/10 border border-primary/30 rounded font-label-caps text-[10px] text-primary hover:bg-primary/20 transition-colors">VERIFY</button>
+<button class="p-2 rounded bg-surface-variant hover:bg-outline-variant text-on-surface transition-colors" title="View Profile">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="bg-surface rounded p-gutter cyber-border flex items-center justify-between group">
+<div class="flex items-center gap-gutter">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Abstract macro photography of a shattered glass surface illuminated from behind by a harsh red laser light against pitch blackness. The shards create complex, aggressive geometric patterns. Deep mahogany shadows, vibrant primary red highlights. Minimalist brutalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMgFf7dzJhbA16fDbT_3nA7ySLy3cAmpP8JSIE7Ee7bqux5q3UJvvpKHQXivmqa582yw9PoWY6L6dHbPyZ8GHfBdRcvfDvNX_RWjhwPW8LoQAKzuV5sXiMWXJF_5KpTghvKuDGqtDCRIdbWFZWu4YexEHMEnTnRW6TleL0AdGiccRduHYSokv5fQVScq35__uf7tPr1eTdwKNH0BVIYsXf02pKGb3DFRz712HmQP8ltLkAVeRUvbtM"/>
+</div>
+<div>
+<div class="flex items-center gap-unit">
+<p class="font-action-text text-action-text text-on-surface">NodeOperator99</p>
+<span class="material-symbols-outlined text-[14px] status-secured" title="Verified">verified</span>
+</div>
+<p class="font-label-caps text-[10px] text-outline-variant truncate w-32 md:w-64">npub1def...456uvw</p>
+</div>
+</div>
+<div class="flex items-center gap-stack-tight">
+<div class="hidden md:flex flex-col items-end mr-gutter">
+<span class="font-label-caps text-[10px] text-on-surface-variant">TRUST WEIGHT</span>
+<div class="w-16 h-1 bg-surface-container-highest rounded mt-1 overflow-hidden"><div class="bg-primary h-full w-[92%]"></div></div>
+</div>
+<button class="p-2 rounded hover:bg-surface-variant text-on-surface-variant hover:text-error transition-colors" title="Revoke Trust">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+<button class="p-2 rounded bg-surface-variant hover:bg-outline-variant text-on-surface transition-colors" title="View Profile">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Pagination/Load More -->
+<div class="p-4 border-t border-outline-variant bg-surface/30 flex justify-center">
+<button class="font-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-unit">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+                            LOAD MORE RELAYS
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

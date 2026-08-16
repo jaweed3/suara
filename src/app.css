@@ -414,3 +414,68 @@ body,
 .btn.btn-tall.btn-circle {
   @apply w-10;
 }
+
+/* ============ Yapping Rebel Protocol ============ */
+
+:root {
+  --font-headline: "Hanken Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body,
+.btn,
+button,
+input,
+textarea {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+.staatliches {
+  font-family: var(--font-headline);
+}
+
+.font-mono,
+code,
+pre,
+.npub {
+  font-family: var(--font-mono) !important;
+}
+
+.yap-btn {
+  background-color: var(--accent);
+  color: #fff;
+  font-family: var(--font-headline);
+  font-weight: 700;
+}
+
+.feed-card {
+  background-color: #150808;
+  border: 1px solid #2d0a0a;
+  transition: border-color 0.2s ease;
+}
+
+.feed-card:hover {
+  border-color: var(--accent);
+}
+
+.action-icon {
+  color: #5d3f3f;
+  transition: color 0.2s ease;
+}
+
+.action-icon:hover {
+  color: var(--accent);
+}
+
+.action-icon-zap:hover {
+  color: #f23b0d;
+}
+
+.caret-[#ee113d] {
+  caret-color: var(--accent);
+}

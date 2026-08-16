@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Communities &amp; Safe Spaces - Yapping</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#eedfde",
+                        "on-secondary": "#4e2423",
+                        "surface": "#191212",
+                        "surface-tint": "#ffb3b2",
+                        "on-tertiary-fixed": "#3d0600",
+                        "surface-variant": "#3b3332",
+                        "primary-container": "#ff525f",
+                        "on-surface": "#eedfde",
+                        "inverse-surface": "#eedfde",
+                        "tertiary-fixed": "#ffdad2",
+                        "secondary": "#f8b6b2",
+                        "on-primary": "#680014",
+                        "primary-fixed": "#ffdad9",
+                        "background": "#191212",
+                        "surface-dim": "#191212",
+                        "primary": "#ffb3b2",
+                        "on-surface-variant": "#e7bcbb",
+                        "outline-variant": "#5d3f3f",
+                        "tertiary-fixed-dim": "#ffb4a3",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#3b3332",
+                        "on-secondary-fixed": "#34100f",
+                        "inverse-on-surface": "#372e2e",
+                        "on-tertiary": "#631000",
+                        "on-primary-fixed": "#410009",
+                        "on-secondary-container": "#e9a8a5",
+                        "on-primary-fixed-variant": "#920020",
+                        "tertiary-container": "#ff5630",
+                        "on-primary-container": "#5b0010",
+                        "outline": "#ae8787",
+                        "primary-fixed-dim": "#ffb3b2",
+                        "surface-container-lowest": "#130d0c",
+                        "inverse-primary": "#bf002d",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#211a1a",
+                        "secondary-fixed-dim": "#f8b6b2",
+                        "surface-container": "#251e1e",
+                        "on-tertiary-fixed-variant": "#8b1a00",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#ffdad7",
+                        "tertiary": "#ffb4a3",
+                        "on-secondary-fixed-variant": "#693a38",
+                        "on-tertiary-container": "#560c00",
+                        "surface-bright": "#403737",
+                        "secondary-container": "#6b3c3a",
+                        "surface-container-high": "#302828",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "stack-loose": "20px",
+                        "stack-tight": "8px",
+                        "gutter": "12px",
+                        "margin-desktop": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": [
+                            "JetBrains Mono"
+                        ],
+                        "action-text": [
+                            "Hanken Grotesk"
+                        ],
+                        "body-sm": [
+                            "Inter"
+                        ],
+                        "headline-lg-mobile": [
+                            "Hanken Grotesk"
+                        ],
+                        "headline-lg": [
+                            "Hanken Grotesk"
+                        ],
+                        "body-md": [
+                            "Inter"
+                        ],
+                        "headline-xl": [
+                            "Hanken Grotesk"
+                        ]
+                    },
+                    "fontSize": {
+                        "label-caps": [
+                            "12px",
+                            {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "action-text": [
+                            "14px",
+                            {
+                                "lineHeight": "16px",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "body-sm": [
+                            "14px",
+                            {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-lg-mobile": [
+                            "24px",
+                            {
+                                "lineHeight": "28px",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "headline-lg": [
+                            "32px",
+                            {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "body-md": [
+                            "16px",
+                            {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-xl": [
+                            "40px",
+                            {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "800"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #191212; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b3332; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5d3f3f; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex flex-col h-full py-margin-desktop px-4 bg-surface dark:bg-surface border-r border-outline-variant w-64 shrink-0 transition-all duration-300">
+<div class="flex items-center gap-3 mb-8 px-2 cursor-pointer group">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-headline-lg font-black group-hover:scale-105 transition-transform">
+                    Y
+                </div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary leading-none">Yapping</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1 opacity-70">Resistance. Transparency. Sovereign.</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">home</span>
+<span class="font-action-text text-action-text">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">explore</span>
+<span class="font-action-text text-action-text">Discover</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">verified_user</span>
+<span class="font-action-text text-action-text">Trust Network</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined fill">groups</span>
+<span class="font-action-text text-action-text">Communities</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 group mt-auto mb-4" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">person</span>
+<span class="font-action-text text-action-text">Profile</span>
+</a>
+</nav>
+<button class="w-full py-3 rounded bg-[#ee113d] text-white font-action-text text-action-text font-bold active:scale-95 transition-transform hover:bg-opacity-90 uppercase tracking-wide">
+                Yap
+            </button>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile py-unit bg-background/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-headline-lg-mobile font-black">
+                        Y
+                    </div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black text-primary">Yapping</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">settings</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</span>
+</div>
+</header>
+<!-- TopAppBar (Desktop - Minimal version as SideNav is main navigation) -->
+<header class="hidden md:flex sticky top-0 z-40 justify-between items-center w-full px-margin-desktop py-unit bg-background/80 backdrop-blur-xl border-b border-outline-variant min-h-[64px]">
+<div class="font-headline-lg text-headline-lg font-bold text-on-background">Communities &amp; Safe Spaces</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+<input class="bg-[#050202] border border-outline-variant text-on-background rounded pl-10 pr-4 py-2 font-body-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-outline-variant w-64" placeholder="Search communities..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">settings</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</span>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-8 pb-32 md:pb-8">
+<!-- Header Section -->
+<div class="max-w-7xl mx-auto mb-10">
+<h2 class="font-headline-xl text-headline-xl text-on-background md:hidden mb-2">Communities</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Encrypted enclaves for unfiltered discussion. Access requires meeting specific trust scores. Moderation levels dictate the strictness of identity protection vs open dialogue.</p>
+</div>
+<!-- Featured Community Bento Box -->
+<div class="max-w-7xl mx-auto mb-12">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="lg:col-span-2 bg-[#150808] border border-outline-variant rounded p-6 relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 bg-gradient-to-br from-[#ee113d] to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start mb-16 relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">shield</span>
+<span class="font-label-caps text-label-caps text-primary">FEATURED ENCLAVE</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-background mb-1">Curhat HR</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">The unfiltered truth behind corporate culture in Indonesia. Anonymous salary transparent, toxic workplace warnings, and labor rights discussions.</p>
+</div>
+<div class="bg-[#050202] border border-outline-variant px-3 py-1 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">group</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">12.4K</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 items-end justify-between relative z-10">
+<div class="flex gap-4">
+<div class="bg-surface-container border border-outline-variant px-3 py-2 rounded">
+<p class="font-label-caps text-label-caps text-outline-variant mb-1">MODERATION</p>
+<p class="font-action-text text-action-text text-[#ee113d] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">policy</span> Ketat
+                                        </p>
+</div>
+<div class="bg-surface-container border border-outline-variant px-3 py-2 rounded">
+<p class="font-label-caps text-label-caps text-outline-variant mb-1">REQ. TRUST</p>
+<p class="font-action-text text-action-text text-on-background flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span> 85+
+                                        </p>
+</div>
+</div>
+<button class="px-6 py-2 rounded bg-[#ee113d] text-white font-action-text text-action-text font-bold active:scale-95 transition-transform hover:bg-opacity-90">
+                                    Gabung
+                                </button>
+</div>
+</div>
+<!-- Stats/Info Box -->
+<div class="bg-[#150808] border border-outline-variant rounded p-6 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-4">Your Security Profile</h4>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between font-label-caps text-label-caps mb-1">
+<span class="text-on-surface-variant">Trust Score</span>
+<span class="text-primary">92/100</span>
+</div>
+<div class="h-1 w-full bg-[#050202] rounded overflow-hidden">
+<div class="h-full bg-primary w-[92%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-label-caps mb-1">
+<span class="text-on-surface-variant">Anonymity Level</span>
+<span class="text-[#ee113d]">Maximum</span>
+</div>
+<div class="h-1 w-full bg-[#050202] rounded overflow-hidden">
+<div class="h-full bg-[#ee113d] w-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-action-text text-action-text flex items-center gap-1" href="#">
+                                    How is Trust calculated? <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Grid of Communities -->
+<div class="max-w-7xl mx-auto">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Discover Enclaves</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-variant border border-outline-variant rounded font-label-caps text-label-caps text-on-background hover:bg-[#2d0a0a] hover:border-[#ee113d] transition-colors">All</button>
+<button class="px-3 py-1 bg-[#050202] border border-outline-variant rounded font-label-caps text-label-caps text-on-surface-variant hover:bg-[#2d0a0a] hover:border-[#ee113d] transition-colors">Strict Mod</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-[#150808] border border-[#2d0a0a] hover:border-[#ee113d] transition-colors duration-300 rounded p-5 flex flex-col h-full group">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-action-text text-action-text text-lg text-on-background font-bold group-hover:text-primary transition-colors">Pejuang Sandwich Gen</h4>
+<span class="material-symbols-outlined text-outline-variant">account_balance_wallet</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">Financial survival tactics, venting about family obligations, and shared resources for the squeezed generation.</p>
+<div class="flex flex-col gap-4 mt-auto">
+<div class="flex gap-2 font-label-caps text-label-caps">
+<span class="bg-[#050202] px-2 py-1 border border-outline-variant rounded text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">gavel</span> Santai
+                                    </span>
+<span class="bg-[#050202] px-2 py-1 border border-outline-variant rounded text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span> 50+
+                                    </span>
+</div>
+<button class="w-full py-2 rounded bg-surface-variant border border-outline-variant text-on-background font-action-text text-action-text font-bold hover:bg-[#ee113d] hover:border-[#ee113d] hover:text-white transition-all">
+                                    Gabung
+                                </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#150808] border border-[#2d0a0a] hover:border-[#ee113d] transition-colors duration-300 rounded p-5 flex flex-col h-full group">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-action-text text-action-text text-lg text-on-background font-bold group-hover:text-primary transition-colors">Creative Industry Roast</h4>
+<span class="material-symbols-outlined text-outline-variant">palette</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">Exposing unpaid pitches, toxic agency culture, and client horror stories. Names withheld, lessons shared.</p>
+<div class="flex flex-col gap-4 mt-auto">
+<div class="flex gap-2 font-label-caps text-label-caps">
+<span class="bg-[#050202] px-2 py-1 border border-[#ee113d]/30 rounded text-[#ee113d] flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">policy</span> Ketat
+                                    </span>
+<span class="bg-[#050202] px-2 py-1 border border-outline-variant rounded text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span> 75+
+                                    </span>
+</div>
+<button class="w-full py-2 rounded bg-surface-variant border border-outline-variant text-on-background font-action-text text-action-text font-bold hover:bg-[#ee113d] hover:border-[#ee113d] hover:text-white transition-all">
+                                    Gabung
+                                </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#150808] border border-[#2d0a0a] hover:border-[#ee113d] transition-colors duration-300 rounded p-5 flex flex-col h-full group">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-action-text text-action-text text-lg text-on-background font-bold group-hover:text-primary transition-colors">Tech Layoffs ID</h4>
+<span class="material-symbols-outlined text-outline-variant">code_blocks</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-1">Real-time updates on restructuring, severance package comparisons, and hidden job market leads.</p>
+<div class="flex flex-col gap-4 mt-auto">
+<div class="flex gap-2 font-label-caps text-label-caps">
+<span class="bg-[#050202] px-2 py-1 border border-outline-variant rounded text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">gavel</span> Sedang
+                                    </span>
+<span class="bg-[#050202] px-2 py-1 border border-outline-variant rounded text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span> 60+
+                                    </span>
+</div>
+<button class="w-full py-2 rounded bg-surface-variant border border-outline-variant text-on-background font-action-text text-action-text font-bold hover:bg-[#ee113d] hover:border-[#ee113d] hover:text-white transition-all">
+                                    Gabung
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface/90 backdrop-blur-xl border-t border-outline-variant z-50 px-2 py-2 flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">explore</span>
+</a>
+<div class="relative -top-5">
+<button class="w-12 h-12 rounded-full bg-[#ee113d] text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined font-bold">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 p-2 text-primary" href="#">
+<span class="material-symbols-outlined fill">groups</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</div>
+</body></html>

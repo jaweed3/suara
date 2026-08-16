@@ -9,7 +9,6 @@
   import Input from "src/partials/Input.svelte"
   import Button from "src/partials/Button.svelte"
   import FeedForm from "src/app/shared/FeedForm.svelte"
-  import FeedSelector from "src/app/shared/FeedSelector.svelte"
   import {normalizeFeedDefinition, readFeed} from "src/domain"
   import {deleteEvent} from "src/engine"
 
@@ -93,13 +92,9 @@
     </Input>
     <slot name="controls" />
     {#if $signer}
-      <Button class="btn btn-low" on:click={openForm}>Customize</Button>
+      <Button class="btn btn-low" on:click={openForm}>Sesuaikan</Button>
     {/if}
   </div>
-  <Card
-    class="flex flex-col gap-4 xl:fixed xl:bottom-4 xl:right-4 xl:top-20 xl:z-nav xl:w-80 xl:overflow-y-auto 2xl:w-96">
-    <FeedSelector {feed} {setFeed} />
-  </Card>
 </div>
 
 {#if $form.enabled}

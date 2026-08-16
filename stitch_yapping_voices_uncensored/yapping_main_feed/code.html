@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yapping - Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#eedfde",
+                        "on-secondary": "#4e2423",
+                        "surface": "#191212",
+                        "surface-tint": "#ffb3b2",
+                        "on-tertiary-fixed": "#3d0600",
+                        "surface-variant": "#3b3332",
+                        "primary-container": "#ff525f",
+                        "on-surface": "#eedfde",
+                        "inverse-surface": "#eedfde",
+                        "tertiary-fixed": "#ffdad2",
+                        "secondary": "#f8b6b2",
+                        "on-primary": "#680014",
+                        "primary-fixed": "#ffdad9",
+                        "background": "#191212",
+                        "surface-dim": "#191212",
+                        "primary": "#ffb3b2",
+                        "on-surface-variant": "#e7bcbb",
+                        "outline-variant": "#5d3f3f",
+                        "tertiary-fixed-dim": "#ffb4a3",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#3b3332",
+                        "on-secondary-fixed": "#34100f",
+                        "inverse-on-surface": "#372e2e",
+                        "on-tertiary": "#631000",
+                        "on-primary-fixed": "#410009",
+                        "on-secondary-container": "#e9a8a5",
+                        "on-primary-fixed-variant": "#920020",
+                        "tertiary-container": "#ff5630",
+                        "on-primary-container": "#5b0010",
+                        "outline": "#ae8787",
+                        "primary-fixed-dim": "#ffb3b2",
+                        "surface-container-lowest": "#130d0c",
+                        "inverse-primary": "#bf002d",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#211a1a",
+                        "secondary-fixed-dim": "#f8b6b2",
+                        "surface-container": "#251e1e",
+                        "on-tertiary-fixed-variant": "#8b1a00",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#ffdad7",
+                        "tertiary": "#ffb4a3",
+                        "on-secondary-fixed-variant": "#693a38",
+                        "on-tertiary-container": "#560c00",
+                        "surface-bright": "#403737",
+                        "secondary-container": "#6b3c3a",
+                        "surface-container-high": "#302828",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "stack-loose": "20px",
+                        "stack-tight": "8px",
+                        "gutter": "12px",
+                        "margin-desktop": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono", "monospace"],
+                        "action-text": ["Hanken Grotesk", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Hanken Grotesk", "sans-serif"],
+                        "headline-lg": ["Hanken Grotesk", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-xl": ["Hanken Grotesk", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "action-text": ["14px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0a0505; /* Black Cherry depth */
+            color: #eedfde;
+        }
+        .yap-btn {
+            background-color: #ee113d;
+            color: #ffffff;
+        }
+        .feed-card {
+            background-color: #150808;
+            border: 1px solid #2d0a0a;
+            transition: border-color 0.2s ease;
+        }
+        .feed-card:hover {
+            border-color: #ee113d;
+        }
+        .action-icon {
+            color: #5d3f3f;
+            transition: color 0.2s ease;
+        }
+        .action-icon:hover {
+            color: #ee113d;
+        }
+        .action-icon-zap:hover {
+            color: #f23b0d; /* Tertiary zap color */
+        }
+        .input-bg {
+            background-color: #050202;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen font-body-md text-body-md">
+<!-- Top AppBar (Mobile Only) -->
+<header class="md:hidden sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile py-unit bg-[#0a0505]/80 backdrop-blur-xl border-b border-[#2d0a0a]">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Yapping</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:text-primary transition-colors" data-icon="settings">settings</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+</div>
+</header>
+<div class="max-w-[1200px] mx-auto flex h-screen overflow-hidden">
+<!-- Left Sidebar (SideNavBar) - Desktop -->
+<nav class="hidden md:flex flex-col h-full py-margin-desktop px-4 w-64 border-r border-[#2d0a0a] bg-surface flex-shrink-0">
+<div class="mb-stack-loose px-4">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary mb-1">Yapping</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Resistance. Transparency. Sovereign.</p>
+</div>
+<div class="flex-1 flex flex-col gap-2">
+<!-- Active Item: Home -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold border-r-4 border-primary bg-surface-container-high rounded-l hover:bg-surface-variant transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-action-text text-action-text">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-action-text text-action-text">Discover</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-action-text text-action-text">Trust Network</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-action-text text-action-text">Communities</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-medium hover:bg-surface-variant transition-colors duration-200 active:scale-95 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-action-text text-action-text">Profile</span>
+</a>
+</div>
+<div class="mt-auto pt-4">
+<button class="w-full yap-btn font-action-text text-action-text py-3 rounded active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+                    Yap
+                </button>
+<div class="mt-4 flex items-center gap-3 px-2">
+<img alt="User profile avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A small, stylized profile avatar of a hacker-like figure in a dark digital environment, wearing a hood. Deep mahogany and black tones with a slight digital glitch effect. Rebellious and anonymous aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWHo3_4LoO3FgTpoSmlOOpBaYtTQRu4FDsOUq_43Is2-PoCi85ALKspMW8UDQ602vT7R9E9f1fHJ7WWOz-zpF4Q-ALa8eBwkhYlYmK_pUitbGihdpnKWSen0ZiluU61LOFO-N-ekNKWfI8zH1Vt6Q4VuPnsy7_PPpmI-gp51DqYK9u1jC8uE5pbu2NilrbiVwWWOqOTbkEAO9QppGd6-6NWf9NKu0qNfF9SCRvGJASu-9nxzJfXrCf"/>
+<div class="flex flex-col">
+<span class="font-action-text text-action-text text-on-surface">@anon_id</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-tertiary" data-icon="lock">lock</span> Secured
+                        </span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Center Feed (Main Canvas) -->
+<main class="flex-1 h-full overflow-y-auto hide-scrollbar flex justify-center w-full">
+<div class="w-full max-w-[680px] min-h-full border-r border-l border-[#2d0a0a] flex flex-col">
+<!-- Feed Header / Tabs -->
+<div class="sticky top-0 z-40 bg-[#0a0505]/90 backdrop-blur-md border-b border-[#2d0a0a]">
+<div class="flex">
+<button class="flex-1 py-4 text-primary border-b-2 border-primary font-action-text text-action-text hover:bg-surface-variant transition-colors">
+                            Terbaru
+                        </button>
+<button class="flex-1 py-4 text-on-surface-variant hover:bg-surface-variant transition-colors font-action-text text-action-text">
+                            Mengikuti
+                        </button>
+<button class="flex-1 py-4 text-on-surface-variant hover:bg-surface-variant transition-colors font-action-text text-action-text flex justify-center items-center gap-1">
+                            Terpercaya
+                            <span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
+</button>
+</div>
+</div>
+<!-- Anon Banner -->
+<div class="px-margin-desktop py-stack-tight bg-primary/10 border-b border-[#2d0a0a] flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="shield">shield</span>
+<span class="font-body-sm text-body-sm text-primary">Anonimitas Terjamin. End-to-end encrypted on Nostr relays.</span>
+</div>
+<!-- Composer -->
+<div class="p-margin-desktop border-b border-[#2d0a0a] bg-surface">
+<div class="flex gap-4">
+<img alt="Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant flex-shrink-0" data-alt="A small, stylized profile avatar of a hacker-like figure in a dark digital environment, wearing a hood. Deep mahogany and black tones with a slight digital glitch effect. Rebellious and anonymous aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAadIY4xgQivyz9pb3FKp1P34QmOQPwePtSVNiwmQ7A27KfpawXor0cL-tqwDnYKtpWshH8zOezCn8iCaDB9mrALUhbqJz7_AsvwN26j0wSTCjca_hZmZSxc4_kAqxqwlYmkGNqyG-zMwVWd7g5okRBaEDbPdlBbGfibZ_cJD0Ay95rjUVRieoBtz2cPn-JP6axoTD94W1qBdExOqK2rHX92rJVb3-LBWPYgUnX80FGKiroibl3Gex"/>
+<div class="flex-1 flex flex-col">
+<textarea class="w-full bg-transparent border-none text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md resize-none focus:ring-0 p-0 mb-4 h-16 caret-[#ee113d]" placeholder="What's happening? Speak freely."></textarea>
+<div class="flex justify-between items-center border-t border-[#2d0a0a] pt-3">
+<div class="flex gap-2 text-primary">
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined" data-icon="image">image</span></button>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined" data-icon="gif_box">gif_box</span></button>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined" data-icon="sentiment_satisfied">sentiment_satisfied</span></button>
+</div>
+<button class="yap-btn px-6 py-2 rounded font-action-text text-action-text active:scale-95 transition-transform">Yap</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Content -->
+<div class="flex flex-col flex-1 pb-20 md:pb-0">
+<!-- Yap Item 1 -->
+<article class="feed-card p-4 border-b border-x-0 border-t-0 flex gap-4 cursor-pointer">
+<img alt="Author avatar" class="w-12 h-12 rounded-full object-cover flex-shrink-0" data-alt="A striking portrait of an anonymous individual wearing a stylized futuristic cyberpunk mask. The environment is dark and moody, heavily lit by red and crimson neon lights. High contrast, digital brutalism style, conveying a sense of rebellion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHZnHrEzv_syqjPB_VZWRx8O5omNRLhKE6HRtTYDqziPCbVK2PSurxFhRadz-H2SoABgpIAAP3y6TR1atBCBQJXUo8mSowmAuCeTixKGMCz3itLqcktS2R-foJmZjjbJFa1b0iidjPCzw1fh-t_3sIPAwk8cWn6y_UmeFzlYv3dLRaWpIIhhssewcoX6u1zepijQZ6M3iN-hL5X6IwYpf3kcx3jWWahj2Z1gZXkRe9wVYT-7gnmida"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-action-text text-action-text text-on-surface truncate">Neo_Jakarta</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">@npub1...jk9</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">2m</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-3 whitespace-pre-wrap break-words">UU ITE is being used again to silence activists. Kita harus tetep waspada dan pakai jaringan terdesentralisasi. Keep your keys safe, comrades. 🛡️💻</p>
+<!-- Action Row -->
+<div class="flex justify-between text-on-surface-variant max-w-md">
+<button class="flex items-center gap-2 action-icon group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="chat_bubble">chat_bubble</span><span class="text-xs">12</span></button>
+<button class="flex items-center gap-2 action-icon group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="repeat">repeat</span><span class="text-xs">45</span></button>
+<button class="flex items-center gap-2 action-icon group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="favorite">favorite</span><span class="text-xs">102</span></button>
+<button class="flex items-center gap-2 action-icon-zap group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="bolt">bolt</span><span class="text-xs">1k sats</span></button>
+</div>
+</div>
+</article>
+<!-- Yap Item 2 -->
+<article class="feed-card p-4 border-b border-x-0 border-t-0 flex gap-4 cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center flex-shrink-0 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person_off">person_off</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-action-text text-action-text text-on-surface truncate">Anonymous User</span>
+<span class="font-label-caps text-label-caps bg-[#2d0a0a] text-primary px-1 rounded">ANON</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">15m</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-3 whitespace-pre-wrap break-words">Ada bocoran data baru terkait skandal proyek infrastruktur. Link to the torrent is dropping on zero-net in 5 mins. Stay tuned.</p>
+<!-- Action Row -->
+<div class="flex justify-between text-on-surface-variant max-w-md">
+<button class="flex items-center gap-2 action-icon group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="chat_bubble">chat_bubble</span><span class="text-xs">89</span></button>
+<button class="flex items-center gap-2 action-icon group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="repeat">repeat</span><span class="text-xs">300+</span></button>
+<button class="flex items-center gap-2 action-icon group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="favorite">favorite</span><span class="text-xs">512</span></button>
+<button class="flex items-center gap-2 action-icon-zap group"><span class="material-symbols-outlined text-[18px] group-hover:bg-surface-variant p-2 rounded-full transition-colors" data-icon="bolt">bolt</span><span class="text-xs">5k sats</span></button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- Right Sidebar (Trends/WoT) - Desktop -->
+<aside class="hidden lg:flex flex-col h-full py-margin-desktop px-4 w-[320px] border-l border-[#2d0a0a] flex-shrink-0 gap-6 overflow-y-auto hide-scrollbar">
+<!-- Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full input-bg border border-[#2d0a0a] rounded-full py-2 pl-10 pr-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary font-body-sm text-body-sm outline-none transition-colors" placeholder="Search network..." type="text"/>
+</div>
+<!-- Trending Section -->
+<div class="bg-surface-container-low rounded-lg border border-[#2d0a0a] p-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface mb-4">Trending (Encrypted)</h2>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col cursor-pointer group">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">1 • POLITICS</span>
+<span class="font-action-text text-action-text text-on-surface group-hover:text-primary transition-colors">#TolakUUITE</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-1">12.5K Yaps</span>
+</div>
+<div class="flex flex-col cursor-pointer group">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">2 • TECH</span>
+<span class="font-action-text text-action-text text-on-surface group-hover:text-primary transition-colors">Nostr Relays Down?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-1">8,432 Yaps</span>
+</div>
+<div class="flex flex-col cursor-pointer group">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">3 • LOCAL</span>
+<span class="font-action-text text-action-text text-on-surface group-hover:text-primary transition-colors">Jakarta Protests</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-1">5,102 Yaps</span>
+</div>
+</div>
+</div>
+<!-- Web of Trust (WoT) Suggestions -->
+<div class="bg-surface-container-low rounded-lg border border-[#2d0a0a] p-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface mb-4 flex items-center gap-2">
+                    Web of Trust
+                    <span class="material-symbols-outlined text-primary text-[18px]" data-icon="policy">policy</span>
+</h2>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<img alt="WoT Suggestion 1" class="w-10 h-10 rounded-full object-cover" data-alt="A close up shot of a mechanical keyboard glowing with dark red and mahogany backlights in a pitch black room, implying a hacker or cybersecurity expert's workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKbMx5DKGexSnQtzsViqqbLx4C4WPB3e7EQ1XRRTKJdFeOO0sMD0kLzJrfgW2D7oVRI7wPJRDxiWsM-HjdzJVSu1oR0Bk4UYle6FVFlstROK55fxq-EIeWvKQCSgbcr72dKWd-LilmsG_OeODiF-sA1aYRB365L0-6M_N5A0fU1JK1514wymR9pL-nlZ0xR879XBGgWJzTxqLZauVTrY1BWaqQ0-zWnU4djNvpigAioIWScpitFeLX"/>
+<div class="flex flex-col">
+<span class="font-action-text text-action-text text-on-surface truncate w-24">Cyber_Sec_ID</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs truncate w-24">@sec_expert</span>
+</div>
+</div>
+<button class="font-action-text text-action-text text-primary border border-[#2d0a0a] px-3 py-1 rounded hover:bg-primary/10 transition-colors">Follow</button>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-[#2d0a0a] flex items-center justify-center border border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+</div>
+<div class="flex flex-col">
+<span class="font-action-text text-action-text text-on-surface truncate w-24">Dev_Ops_My</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs truncate w-24">@dev_my</span>
+</div>
+</div>
+<button class="font-action-text text-action-text text-primary border border-[#2d0a0a] px-3 py-1 rounded hover:bg-primary/10 transition-colors">Follow</button>
+</div>
+</div>
+</div>
+<footer class="mt-auto py-4 flex flex-wrap gap-x-3 gap-y-1">
+<a class="font-body-sm text-body-sm text-on-surface-variant text-xs hover:underline" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant text-xs hover:underline" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant text-xs hover:underline" href="#">Relay Info</a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">© 2024 Yapping Corp.</span>
+</footer>
+</aside>
+</div>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-[#0a0505]/90 backdrop-blur-xl border-t border-[#2d0a0a] flex justify-around items-center py-2 z-50">
+<a class="flex flex-col items-center p-2 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</a>
+<a class="flex flex-col items-center p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</a>
+</nav>
+<!-- Mobile FAB -->
+<button class="md:hidden fixed bottom-20 right-4 w-14 h-14 rounded-full yap-btn flex items-center justify-center shadow-lg z-50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-white" data-icon="edit">edit</span>
+</button>
+</body></html>
