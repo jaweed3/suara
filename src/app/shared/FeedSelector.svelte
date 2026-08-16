@@ -137,7 +137,7 @@
     {/each}
     <Chip class="cursor-pointer" on:click={editFeeds}>
       <i class="fa fa-edit" />
-      Edit feeds
+      Atur feed
     </Chip>
   </div>
 </div>

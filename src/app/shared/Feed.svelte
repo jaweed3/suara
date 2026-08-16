@@ -188,7 +188,7 @@
 {#if !hideSpinner}
   {#if exhausted}
     <div transition:fly|local={{y: 20, delay: 500}} class="flex flex-col items-center py-24">
-      <img alt="" class="h-16 w-16 opacity-60" src="/images/yapping.png" />
+      <img alt="" class="h-16 w-16 opacity-60" src="/images/yapping.svg" />
       <span class="text-neutral-500">Udah, nggak ada lagi.</span>
     </div>
   {:else}
